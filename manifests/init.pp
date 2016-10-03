@@ -1,48 +1,31 @@
 # Class: apache_storm
 # ===========================
-#
-# Full description of class apache_storm here.
-#
-# Parameters
-# ----------
-#
-# Document parameters here.
-#
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
-#
-# Variables
-# ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
-#
-# Examples
-# --------
-#
-# @example
-#    class { 'apache_storm':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#    }
-#
-# Authors
-# -------
-#
-# Author Name <author@domain.com>
-#
-# Copyright
-# ---------
-#
-# Copyright 2016 Your name here, unless otherwise noted.
-#
-class apache_storm {
+class apache_storm (
+  $package_name   = $::apache_storm::params::package_name,
+  $version        = $::apache_storm::params::version,
+  $user           = $::apache_storm::params::user,
+  $group          = $::apache_storm::params::group,
+  $install_path   = $::apache_storm::params::install_path,
+  $config_path    = $::apache_storm::params::config_path,
+  $repo           = $::apache_storm::params::repo,
+  $config         = {},
+  ) inherits apache_storm::params {
 
+  # Fail fast if we're not using a new Puppet version.
+  if versioncmp($::puppetversion, '3.7.0') < 0 {
+    fail('This module requires the use of Puppet v3.7.0 or newer.')
+  }
+  validate_string($package_name)
+  validate_absolute_path($install_path)
+  validate_absolute_path($config_path)
+  validate_hash($config)
+
+  # Variable used to merge configd
+  $config_options = merge($::apache_storm::params::default_config, $config)
+  validate_hash($config_options)
+
+  class { 'apache_storm::install': } ->
+  class { 'apache_storm::config': } ->
+  class { 'apache_storm::service': }
 
 }
