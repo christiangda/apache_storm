@@ -14,12 +14,15 @@ class apache_storm::install inherits apache_storm {
   # Vector with all the paths
   $create_paths = [
     $install_path,
+    $config_path,
     $releases_path,
     $sources_path,
   ]
 
   # Install dependecies
-  ensure_packages(['bash','wget','tar'], {'ensure' => 'present'}) ~>
+  ensure_packages(['bash','wget','tar'], {'ensure' => 'present'})
+
+  #
   group { $group:
     ensure  => 'present',
   } ~>
@@ -38,13 +41,13 @@ class apache_storm::install inherits apache_storm {
     group  => $group,
   } ~>
   exec { "download__${package_file}":
-    command => "/usr/bin/wget -O ${package_file_path}/$package_file ${package_uri} 2> /dev/null",
+    command => "/usr/bin/wget -O ${package_file_path} ${package_uri} 2> /dev/null",
     creates => $package_file_path,
     timeout => 1800,
     user    => $user,
   } ~>
   exec { "extract__${package_file}":
-    command     => "/bin/tar xf ${package_file_path}/$package_file -C ${releases_path}/ 2> /dev/null",
+    command     => "/bin/tar xf ${package_file_path} -C ${releases_path}/ 2> /dev/null",
     refreshonly => true,
     user        => $user,
   } ~>
