@@ -11,6 +11,17 @@ class apache_storm::params {
   $install_path   = "/opt/$package_name"
   $config_path    = "/etc/$package_name"
   $repo           = 'http://ftp.cixug.es/apache/storm'
+  $pid_file_path  = '/var/run'
+
+  $releases_path  = "${install_path}/releases"
+  $sources_path   = "${install_path}/sources"
+
+  # Example: http://www.apache.org/dyn/closer.lua/storm/apache-storm-1.0.2/apache-storm-1.0.2.tar.gz
+  $package_file      = "${package_name}-${$version}.tar.gz"
+  $package_uri       = "${repo}/${package_name}-${$version}/${package_file}"
+  $package_file_path = "${sources_path}/${package_file}"
+  $logs_path         = "${releases_path}/${package_name}-${$version}/logs"
+  $home              = "${releases_path}/${package_name}-${$version}"
 
   $default_common_config = {
     'storm.zookeeper.servers' => ['localhost'],

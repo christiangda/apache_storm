@@ -1,0 +1,13 @@
+[Unit]
+Description=Apache Storm <%= @service_name %> Daemon
+After=network.target
+
+[Service]
+Type=forking
+User=<%= @service_user %>
+Group=<%= @service_group %>
+ExecStart=<%= @command_to_execute %>
+PIDFile=<%= @service_pid_file %>
+
+[Install]
+WantedBy=multi-user.target

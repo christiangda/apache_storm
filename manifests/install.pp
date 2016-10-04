@@ -1,15 +1,7 @@
 # Class: apache_storm::install
 # ===========================
 class apache_storm::install inherits apache_storm {
-  # Base paths
-  $releases_path     = "${install_path}/releases"
-  $sources_path      = "${install_path}/sources"
 
-  # Example: http://www.apache.org/dyn/closer.lua/storm/apache-storm-1.0.2/apache-storm-1.0.2.tar.gz
-  $package_file      = "${package_name}-${$version}.tar.gz"
-  $package_uri       = "${repo}/${package_name}-${$version}/${package_file}"
-  $package_file_path = "${sources_path}/${package_file}"
-  $logs_path         = "${releases_path}/${package_name}-${$version}/logs"
   # Extract paths from config
   $storm_local_dir = $config_options['storm.local.dir']
 

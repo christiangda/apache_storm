@@ -1,0 +1,30 @@
+description "Apache Storm <%= @service_name %> Daemon"
+author      "Christian González <christiangda@gmail.com>"
+
+# What user and group to run as
+#setuid <%= @service_user %>
+#setgid <%= @service_group %>
+
+start on runlevel [2345]
+stop on shutdown
+
+script
+  STORM_USER="<%= @service_user %>"
+  STORM_HOME="<%= @service_home %>"
+  STORM_PID="<%= @service_pid_file %>"
+  STROM_LOG_FILE=""
+
+  exec start-stop-daemon --start --make-pidfile --chuid ${STORM_USER} --chdir ${STORM_HOME} --background \
+      --name <%= @service_name %> --pidfile ${STORM_PID} \
+      --exec <%= @command_to_execute %> -- <%= @service_name %> >> <%= @service_log_file %> 2>&1
+
+end script
+
+pre-start script
+    echo "[`date`] Apache Storm <%= @service_name %> Starting" >> <%= @service_log_file %>
+end script
+
+pre-stop script
+    rm ${STORM_PID}
+    echo "[`date`] Apache Storm <%= @service_name %> Stopping" >> <%= @service_log_file %>
+end script
