@@ -12,18 +12,18 @@ class apache_storm::install inherits apache_storm {
     $config_path,
     $releases_path,
     $sources_path,
-    $logs_path,
+    $pid_path,
   ]
 
-  # Install dependecies
+  # Install dependecies (OS Independent)
   ensure_packages(['bash','wget','tar'], {'ensure' => 'present'})
 
   #
   group { $group:
-    ensure  => 'present',
+    ensure  => $ensure,
   } ~>
   user { $user:
-    ensure  => 'present',
+    ensure  => $ensure,
     comment => 'Apache Storm User',
     name    => $user,
     shell   => '/bin/bash',
@@ -31,7 +31,7 @@ class apache_storm::install inherits apache_storm {
     groups  => $group,
   } ~>
   file { $create_paths:
-    ensure => directory,
+    ensure => 'directory',
     mode   => '0644',
     owner  => $user,
     group  => $group,
@@ -47,47 +47,60 @@ class apache_storm::install inherits apache_storm {
     refreshonly => true,
     user        => $user,
   } ~>
-  file { "symlink__${package_file}__bin":
+  file { $package_logs_path:
+    ensure => 'directory',
+    mode   => '0644',
+    owner  => $user,
+    group  => $group,
+  }
+   ~>
+  file { "symlink__${install_bin_path}":
     ensure => 'link',
-    path   => "${install_path}/bin",
-    target => "${releases_path}/${package_name}-${$version}/bin",
+    path   => $install_bin_path,
+    target => $package_bin_path,
   } ~>
-  file { "symlink__${package_file}__conf":
+  file { "symlink__${install_conf_path}":
     ensure => 'link',
-    path   => "${install_path}/conf",
-    target => "${releases_path}/${package_name}-${$version}/conf",
+    path   => $install_conf_path,
+    target => $package_conf_path,
   } ~>
-  file { "symlink__${package_file}__external":
+  file { "symlink__${install_external_path}":
     ensure => 'link',
-    path   => "${install_path}/external",
-    target => "${releases_path}/${package_name}-${$version}/external",
+    path   => $install_external_path,
+    target => $package_external_path,
   } ~>
-  file { "symlink__${package_file}__extlib":
+  file { "symlink__${install_extlib_path}":
     ensure => 'link',
-    path   => "${install_path}/extlib",
-    target => "${releases_path}/${package_name}-${$version}/extlib",
+    path   => $install_extlib_path,
+    target => $package_extlib_path,
   } ~>
-  file { "symlink__${package_file}__extlib-daemon":
+  file { "symlink__${install_extlib_daemon_path}":
     ensure => 'link',
-    path   => "${install_path}/extlib-daemon",
-    target => "${releases_path}/${package_name}-${$version}/extlib-daemon",
+    path   => $install_extlib_daemon_path,
+    target => $package_extlib_daemon_path,
   } ~>
-  file { "symlink__${package_file}__lib":
+  file { "symlink__${install_lib_path}":
     ensure => 'link',
-    path   => "${install_path}/lib",
-    target => "${releases_path}/${package_name}-${$version}/lib",
+    path   => $install_lib_path,
+    target => $package_lib_path,
   } ~>
-  file { "symlink__${package_file}__logs":
+  file { "symlink__${install_logs_path}":
     ensure => 'link',
-    path   => "${install_path}/logs",
-    target => "${releases_path}/${package_name}-${$version}/logs",
+    path   => $install_logs_path,
+    target => $package_logs_path,
   } ~>
-  file { "symlink__${package_file}__log4j2":
+  file { "symlink__${logs_path}":
     ensure => 'link',
-    path   => "${install_path}/log4j2",
-    target => "${releases_path}/${package_name}-${$version}/log4j2",
+    path   => $logs_path,
+    target => $package_logs_path,
+  } ~>
+  file { "symlink__${install_log4j2_path}":
+    ensure => 'link',
+    path   => $install_log4j2_path,
+    target => $package_log4j2_path,
   } ~>
   file { '/etc/profile.d/apache-storm.sh':
+    ensure  => $ensure,
     mode    => '644',
     content => "export PATH=\$PATH:${install_path}/bin\n",
   }

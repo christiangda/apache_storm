@@ -7,14 +7,14 @@ class apache_storm::config inherits apache_storm {
 
   # create config file
   concat { "${config_path}/storm.yaml":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => $user,
     group   => $group,
     mode    => '0644',
   }
 
-  concat::fragment { 'common':
-    ensure  => 'present',
+  concat::fragment { 'apache-storm-yaml-file':
+    ensure  => $ensure,
     target  => "${config_path}/storm.yaml",
     content => template("${module_name}/storm.yaml.erb"),
     order   => 1,
