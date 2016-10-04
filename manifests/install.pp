@@ -9,14 +9,18 @@ class apache_storm::install inherits apache_storm {
   $package_file      = "${package_name}-${$version}.tar.gz"
   $package_uri       = "${repo}/${package_name}-${$version}/${package_file}"
   $package_file_path = "${sources_path}/${package_file}"
-
+  $logs_path         = "${releases_path}/${package_name}-${$version}/logs"
+  # Extract paths from config
+  $storm_local_dir = $config_options['storm.local.dir']
 
   # Vector with all the paths
   $create_paths = [
+    $storm_local_dir,
     $install_path,
     $config_path,
     $releases_path,
     $sources_path,
+    $logs_path,
   ]
 
   # Install dependecies
@@ -81,9 +85,18 @@ class apache_storm::install inherits apache_storm {
     path   => "${install_path}/lib",
     target => "${releases_path}/${package_name}-${$version}/lib",
   } ~>
+  file { "symlink__${package_file}__logs":
+    ensure => 'link',
+    path   => "${install_path}/logs",
+    target => "${releases_path}/${package_name}-${$version}/logs",
+  } ~>
   file { "symlink__${package_file}__log4j2":
     ensure => 'link',
     path   => "${install_path}/log4j2",
     target => "${releases_path}/${package_name}-${$version}/log4j2",
+  } ~>
+  file { '/etc/profile.d/apache-storm.sh':
+    mode    => '644',
+    content => "export PATH=\$PATH:${install_path}/bin\n",
   }
 }

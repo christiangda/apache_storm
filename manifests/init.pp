@@ -21,11 +21,9 @@ class apache_storm (
   validate_hash($config)
 
   # Variable used to merge configd
-  $config_options = merge($::apache_storm::params::default_config, $config)
+  $config_options = merge($::apache_storm::params::default_common_config, $config)
   validate_hash($config_options)
 
   class { 'apache_storm::install': } ->
-  class { 'apache_storm::config': } ->
-  class { 'apache_storm::service': }
-
+  class { 'apache_storm::config': }
 }
