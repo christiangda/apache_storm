@@ -45,6 +45,7 @@ class apache_storm::params {
   ##############################################################################
   # Config Hashes
   $default_common_config = {
+    'nimbus.seeds'            => ['localhost'],
     'storm.zookeeper.servers' => ['localhost'],
     'storm.local.dir'         => "${install_path}/strom_local_dir",
     'storm.health.check.dir'  => "healthchecks",
@@ -53,23 +54,22 @@ class apache_storm::params {
   }
 
   $default_nimbus_config = {
-    'nimbus.seeds'                  => ['localhost'],
     'nimbus.thrift.port'            => 6627,
     'nimbus.thrift.threads'         => 64,
     'nimbus.thrift.max_buffer_size' => 1048576,
-    'nimbus.childopts'              => '-Xmx1024m',
+    'nimbus.childopts'              => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
   }
 
   $default_ui_config = {
     'ui.host'            => '0.0.0.0',
     'ui.port'            => '8080',
-    'ui.childopts'       => '-Xmx768m',
+    'ui.childopts'       => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
     'ui.actions.enabled' => true,
   }
 
   $default_supervisor_config = {
     'supervisor.slots.ports' => [6700, 6701, 6702, 6703],
-    'supervisor.childopts'   => '-Xmx256m',
+    'supervisor.childopts'   => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
   }
 
   $default_drpc_config = {
@@ -80,12 +80,12 @@ class apache_storm::params {
     'drpc.invocations.port'     => 3773,
     'drpc.invocations.threads'  => 64,
     'drpc.request.timeout.secs' => 600,
-    'drpc.childopts'            => '-Xmx768m',
+    'drpc.childopts'            => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
   }
 
   $default_logviewer_config = {
     'logviewer.port'                        => '8000',
-    'logviewer.childopts'                   => '-Xmx128m',
+    'logviewer.childopts'                   => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
     'logviewer.cleanup.age.mins'            => 10080,
     'logviewer.appender.name'               => 'A1',
     'logviewer.max.sum.worker.logs.size.mb' => 4096,
