@@ -12,7 +12,7 @@ define apache_storm::service (
   $service_home       = $::apache_storm::params::home
   $service_pid_file   = "${::apache_storm::params::pid_path}/${::apache_storm::params::package_name}-${service}.pid"
   $service_log_file   = "${::apache_storm::params::package_logs_path}/${service}.log"
-  $command_to_execute = "${::apache_storm::params::package_bin_path}/storm"
+  $command_to_execute = $::apache_storm::params::storm_command
 
   case $::operatingsystem {
     'RedHat', 'Fedora', 'CentOS': {

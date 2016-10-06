@@ -40,6 +40,8 @@ class apache_storm::params {
   $install_logs_path          = "${install_path}/logs"
   $install_log4j2_path        = "${install_path}/log4j2"
 
+  $storm_command              = "${package_bin_path}/storm"
+
   ##############################################################################
   # Config Hashes
   $default_common_config = {

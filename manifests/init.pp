@@ -10,7 +10,7 @@ class apache_storm (
   ) inherits apache_storm::params {
 
   # check valid values for package ensure param
-  if ! ($ensure in [ 'present', 'installed', 'absent', 'purged', 'held', 'latest' ]) {
+  if ! ($ensure in [ 'present', 'installed', 'absent' ]) {
     fail('ensure is not a valid status parameter value')
   }
   # Fail fast if we're not using a new Puppet version.
@@ -28,6 +28,6 @@ class apache_storm (
   $config_options = merge($::apache_storm::params::default_common_config, $config)
   validate_hash($config_options)
 
-  class { 'apache_storm::install': } ->
-  class { 'apache_storm::config': }
+  class{'apache_storm::install':} ->
+  class{'apache_storm::config':}
 }

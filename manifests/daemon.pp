@@ -2,7 +2,7 @@
 # ===========================
 class apache_storm::daemon (
   $name           = undef,
-  $manage_service = false,
+  $manage_service = true,
   $config         = {},
 ) inherits apache_storm {
 

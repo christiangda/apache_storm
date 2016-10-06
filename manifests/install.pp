@@ -9,7 +9,6 @@ class apache_storm::install inherits apache_storm {
   $create_paths = [
     $storm_local_dir,
     $install_path,
-    $config_path,
     $releases_path,
     $sources_path,
     $pid_path,
@@ -62,6 +61,11 @@ class apache_storm::install inherits apache_storm {
   file { "symlink__${install_conf_path}":
     ensure => 'link',
     path   => $install_conf_path,
+    target => $package_conf_path,
+  } ~>
+  file { "symlink__${config_path}":
+    ensure => 'link',
+    path   => $config_path,
     target => $package_conf_path,
   } ~>
   file { "symlink__${install_external_path}":
