@@ -3,7 +3,7 @@
 define apache_storm::daemon (
   $manage_service = false,
   $instances         = {},
-) inherits apache_storm {
+) {
 
   validate_hash($instances)
 
