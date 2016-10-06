@@ -1,32 +1,31 @@
-# Class: apache_storm::daemon
+# define: apache_storm::daemon
 # ===========================
-class apache_storm::daemon (
-  $name           = undef,
-  $manage_service = true,
-  $config         = {},
+define apache_storm::daemon (
+  $manage_service = false,
+  $instances         = {},
 ) inherits apache_storm {
 
-  validate_hash($config)
+  validate_hash($instances)
 
   # create all the directories nedeed by druid in common
   case $name {
     'nimbus': {
-      $hash_to_render = merge($default_nimbus_config, $config)
+      $hash_to_render = merge($default_nimbus_config, $instances)
     }
     'ui': {
-      $hash_to_render = merge($default_ui_config, $config)
+      $hash_to_render = merge($default_ui_config, $instances)
     }
     'supervisor': {
-      $hash_to_render = merge($default_supervisor_config, $config)
+      $hash_to_render = merge($default_supervisor_config, $instances)
     }
     'drpc': {
-      $hash_to_render = merge($default_drpc_config, $config)
+      $hash_to_render = merge($default_drpc_config, $instances)
     }
     'logviewer': {
-      $hash_to_render = merge($default_logviewer_config, $config)
+      $hash_to_render = merge($default_logviewer_config, $instances)
     }
     'all': {
-      $level_1 = merge($default_nimbus_config, $config)
+      $level_1 = merge($default_nimbus_config, $instances)
       $level_2 = merge($default_ui_config, $level_1)
       $level_3 = merge($default_supervisor_config, $level_2)
       $level_4 = merge($default_drpc_config, $level_3)
