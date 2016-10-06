@@ -47,7 +47,7 @@ class apache_storm::params {
   $default_common_config = {
     'nimbus.seeds'                          => ['localhost'],
     'storm.zookeeper.servers'               => ['localhost'],
-    'storm.local.dir'                       => "${install_path}/strom_local_dir",
+    'storm.local.dir'                       => "${install_path}/storm_local_dir",
     'storm.health.check.dir'                => "healthchecks",
     'java.library.path'                     => "/usr/local/lib:/opt/local/lib:/usr/lib",
     'storm.cluster.mode'                    => "distributed",
