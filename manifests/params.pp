@@ -52,33 +52,12 @@ class apache_storm::params {
     'java.library.path'                     => "/usr/local/lib:/opt/local/lib:/usr/lib",
     'storm.cluster.mode'                    => "distributed",
 
-    'nimbus.thrift.port'                    => 6627,
-    'nimbus.thrift.threads'                 => 64,
-    'nimbus.thrift.max_buffer_size'         => 1048576,
     'nimbus.childopts'                      => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-
-    'ui.host'                               => '0.0.0.0',
-    'ui.port'                               => '8080',
     'ui.childopts'                          => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-    'ui.actions.enabled'                    => true,
 
     'supervisor.slots.ports'                => [6700, 6701, 6702, 6703],
     'supervisor.childopts'                  => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-
-    'drpc.port'                             => 3772,
-    'drpc.worker.threads'                   => 64,
-    'drpc.max_buffer_size'                  => 1048576,
-    'drpc.queue.size'                       => 128,
-    'drpc.invocations.port'                 => 3773,
-    'drpc.invocations.threads'              => 64,
-    'drpc.request.timeout.secs'             => 600,
     'drpc.childopts'                        => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-
-    'logviewer.port'                        => '8000',
     'logviewer.childopts'                   => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-    'logviewer.cleanup.age.mins'            => 10080,
-    'logviewer.appender.name'               => 'A1',
-    'logviewer.max.sum.worker.logs.size.mb' => 4096,
-    'logviewer.max.per.worker.logs.size.mb' => 2048,
   }
 }
