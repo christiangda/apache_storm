@@ -45,45 +45,35 @@ class apache_storm::params {
   ##############################################################################
   # Config Hashes
   $default_common_config = {
-    'nimbus.seeds'            => ['localhost'],
-    'storm.zookeeper.servers' => ['localhost'],
-    'storm.local.dir'         => "${install_path}/strom_local_dir",
-    'storm.health.check.dir'  => "healthchecks",
-    'java.library.path'       => "/usr/local/lib:/opt/local/lib:/usr/lib",
-    'storm.cluster.mode'      => "distributed",
-  }
+    'nimbus.seeds'                          => ['localhost'],
+    'storm.zookeeper.servers'               => ['localhost'],
+    'storm.local.dir'                       => "${install_path}/strom_local_dir",
+    'storm.health.check.dir'                => "healthchecks",
+    'java.library.path'                     => "/usr/local/lib:/opt/local/lib:/usr/lib",
+    'storm.cluster.mode'                    => "distributed",
 
-  $default_nimbus_config = {
-    'nimbus.thrift.port'            => 6627,
-    'nimbus.thrift.threads'         => 64,
-    'nimbus.thrift.max_buffer_size' => 1048576,
-    'nimbus.childopts'              => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-  }
+    'nimbus.thrift.port'                    => 6627,
+    'nimbus.thrift.threads'                 => 64,
+    'nimbus.thrift.max_buffer_size'         => 1048576,
+    'nimbus.childopts'                      => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
 
-  $default_ui_config = {
-    'ui.host'            => '0.0.0.0',
-    'ui.port'            => '8080',
-    'ui.childopts'       => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-    'ui.actions.enabled' => true,
-  }
+    'ui.host'                               => '0.0.0.0',
+    'ui.port'                               => '8080',
+    'ui.childopts'                          => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
+    'ui.actions.enabled'                    => true,
 
-  $default_supervisor_config = {
-    'supervisor.slots.ports' => [6700, 6701, 6702, 6703],
-    'supervisor.childopts'   => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-  }
+    'supervisor.slots.ports'                => [6700, 6701, 6702, 6703],
+    'supervisor.childopts'                  => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
 
-  $default_drpc_config = {
-    'drpc.port'                 => 3772,
-    'drpc.worker.threads'       => 64,
-    'drpc.max_buffer_size'      => 1048576,
-    'drpc.queue.size'           => 128,
-    'drpc.invocations.port'     => 3773,
-    'drpc.invocations.threads'  => 64,
-    'drpc.request.timeout.secs' => 600,
-    'drpc.childopts'            => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
-  }
+    'drpc.port'                             => 3772,
+    'drpc.worker.threads'                   => 64,
+    'drpc.max_buffer_size'                  => 1048576,
+    'drpc.queue.size'                       => 128,
+    'drpc.invocations.port'                 => 3773,
+    'drpc.invocations.threads'              => 64,
+    'drpc.request.timeout.secs'             => 600,
+    'drpc.childopts'                        => '-Xmx768m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
 
-  $default_logviewer_config = {
     'logviewer.port'                        => '8000',
     'logviewer.childopts'                   => '-Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8',
     'logviewer.cleanup.age.mins'            => 10080,

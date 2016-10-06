@@ -11,7 +11,7 @@ class apache_storm (
 
   # check valid values for package ensure param
   if ! ($ensure in [ 'present', 'installed', 'absent' ]) {
-    fail('ensure is not a valid status parameter value')
+    fail('Invalid ensure value.  Allowed values are: present, installed, absent')
   }
   # Fail fast if we're not using a new Puppet version.
   if versioncmp($::puppetversion, '3.7.0') < 0 {

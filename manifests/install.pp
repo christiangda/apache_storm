@@ -51,8 +51,7 @@ class apache_storm::install inherits apache_storm {
     mode   => '0644',
     owner  => $user,
     group  => $group,
-  }
-   ~>
+  } ~>
   file { "symlink__${install_bin_path}":
     ensure => 'link',
     path   => $install_bin_path,
