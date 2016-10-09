@@ -2,16 +2,9 @@ require 'spec_helper'
 
 describe 'apache_storm::install', :type => 'class' do
 
-  ['RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux'].each do |distro|
+  ['RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux', 'Debian', 'Ubuntu'].each do |distro|
 
     context "on #{distro} OS" do
-
-      let(:facts) { {
-        :operatingsystem => distro,
-        :kernel => 'Linux',
-        :osfamily => 'RedHat'
-      } }
-
 
       ##########################################################################
       # global vars
@@ -61,6 +54,10 @@ describe 'apache_storm::install', :type => 'class' do
 
         it { is_expected.to contain_class('apache_storm') }
         it { is_expected.to contain_class('apache_storm::params') }
+
+        it { is_expected.to contain_package('bash').with( { :ensure => 'present'} ) }
+        it { is_expected.to contain_package('wget').with( { :ensure => 'present'} ) }
+        it { is_expected.to contain_package('tar').with(  { :ensure => 'present'} ) }
 
         it { is_expected.to contain_group("#{group}").with({
             :ensure => 'present'
@@ -161,7 +158,7 @@ describe 'apache_storm::install', :type => 'class' do
           })
         }
 
-        # Create
+        # Create profile.d file
         it { is_expected.to contain_file("/etc/profile.d/#{package_name}.sh").with({
           :ensure => 'present',
           :mode   => '0644',
