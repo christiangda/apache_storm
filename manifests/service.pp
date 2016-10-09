@@ -37,8 +37,8 @@ define apache_storm::service (
       }
 
       file { $service_file:
-        ensure => $ensure_file,
-        mode => '0644',
+        ensure  => $ensure_file,
+        mode    => '0644',
         content => template($service_template),
       }
 
@@ -63,8 +63,8 @@ define apache_storm::service (
 
       # https://www.digitalocean.com/community/tutorials/the-upstart-event-system-what-it-is-and-how-to-use-it
       file { $service_file:
-        ensure => $ensure_file,
-        mode => '0644',
+        ensure  => $ensure_file,
+        mode    => '0644',
         content => template($service_template),
       }
 
@@ -85,8 +85,7 @@ define apache_storm::service (
     ensure     => $service_ensure,
     hasstatus  => true,
     hasrestart => true,
-    enable     => $enable,
     provider   => $provider,
   }
-  
+
 }

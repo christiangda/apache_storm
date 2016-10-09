@@ -69,8 +69,37 @@ This is where you list OS compatibility, version compatibility, etc.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+### Install rubygems first
+```bash
+gem install bundler
+```            
+
+### Install all required gems in .vendor/
+```bash
+bundle install --path .vendor
+```            
+
+### Ignore this folder in .gitignore or globally.
+
+### We can already use puppet-lint.
+```bash
+bundle exec puppet-lint
+```            
+
+### We can already use rspec-puppet
+```bash
+bundle exec rspec-puppet-init
+```
+
+### We can already use rake -T to see options
+```bash
+bundle exec rake -T
+```
+
+### We can already use rake -T to see options
+```bash
+bundle exec rake lint
+```
 
 ## Release Notes/Contributors/Etc **Optional**
 

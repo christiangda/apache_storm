@@ -1,22 +1,28 @@
-source ENV['GEM_SOURCE'] || 'https://rubygems.org'
+source 'https://rubygems.org'
+ruby '2.3.1'
 
-group :rake, :test do
-  gem 'rake', '~> 10.4.0',      :require => false
-  gem 'rspec', '~> 3.0',        :require => false
-  gem 'rspec-core',             :require => false
-  gem 'rspec-puppet',           :require => false
-  gem 'puppetlabs_spec_helper', :require => false
-end
+gem 'rake'
+gem 'puppet-lint'
+gem 'puppet-doc-lint'
+gem 'rspec'
+gem 'rspec-puppet'
 
-group :rake, :development do
-  gem 'travis',            :require => false
-  gem 'travis-lint',       :require => false
-  gem 'puppet-syntax',     :require => false
-  gem 'puppet-blacksmith', :require => false
-end
+puppetversion = ENV.key?('PUPPET_VERSION') ? "~> #{ENV['PUPPET_VERSION']}" : ['>= 3.8']
+gem 'puppet', puppetversion, :require => false
+gem 'puppetlabs_spec_helper'
+gem 'beaker'
+gem 'beaker-rspec'
+gem 'puppet-lint'
+gem 'puppet-syntax'
+gem 'rspec-puppet-facts'
+gem 'serverspec'
 
-if puppetversion = ENV['PUPPET_GEM_VERSION']
-  gem 'puppet', puppetversion, :require => false
-else
-  gem 'puppet', '~> 3.7.0', :require => false
-end
+# Extra Puppet-lint gems
+gem 'puppet-lint-appends-check',            :require => false
+gem 'puppet-lint-version_comparison-check', :require => false
+gem 'puppet-lint-unquoted_string-check',    :require => false
+gem 'puppet-lint-undef_in_function-check',  :require => false
+gem 'puppet-lint-trailing_comma-check',     :require => false
+gem 'puppet-lint-leading_zero-check',       :require => false
+gem 'puppet-lint-file_ensure-check',        :require => false
+gem 'puppet-lint-empty_string-check',       :require => false

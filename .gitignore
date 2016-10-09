@@ -50,3 +50,6 @@ build-iPhoneSimulator/
 .rvmrc
 
 spec/fixtures/*
+
+/.vendor/
+*.lock
