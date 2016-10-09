@@ -7,12 +7,12 @@ define apache_storm::service (
 
   # Vars for template
   $service_name       = $service
-  $service_user       = $::apache_storm::user
-  $service_group      = $::apache_storm::group
-  $service_home       = $::apache_storm::params::home
-  $service_pid_file   = "${::apache_storm::params::pid_path}/${::apache_storm::params::package_name}-${service}.pid"
-  $service_log_file   = "${::apache_storm::params::package_logs_path}/${service}.log"
-  $command_to_execute = $::apache_storm::params::storm_command
+  $service_user       = $apache_storm::user
+  $service_group      = $apache_storm::group
+  $service_home       = $apache_storm::params::home
+  $service_pid_file   = "${apache_storm::params::pid_path}/${apache_storm::params::package_name}-${service}.pid"
+  $service_log_file   = "${apache_storm::params::package_logs_path}/${service}.log"
+  $command_to_execute = $apache_storm::params::storm_command
 
   if $ensure == 'absent' {
     $ensure_file    = 'absent'
@@ -27,8 +27,8 @@ define apache_storm::service (
 
   case $::operatingsystem {
     'RedHat', 'Fedora', 'CentOS': {
-      $service_file      = "/lib/systemd/system/${::apache_storm::params::package_name}-${service}.service"
-      $service_file_link = "/etc/systemd/system/${::apache_storm::params::package_name}-${service}.service"
+      $service_file      = "/lib/systemd/system/${apache_storm::params::package_name}-${service}.service"
+      $service_file_link = "/etc/systemd/system/${apache_storm::params::package_name}-${service}.service"
       $service_template  = "${module_name}/systemd-service.erb"
       $provider          = 'systemd'
 
@@ -49,15 +49,15 @@ define apache_storm::service (
       }
 
       if $ensure == 'absent' {
-        Service["${::apache_storm::params::package_name}-${service}"] -> File[$service_file] -> File["symlink__${service_file}"]
+        Service["${apache_storm::params::package_name}-${service}"] -> File[$service_file] -> File["symlink__${service_file}"]
       }
       else {
-        File[$service_file] -> File["symlink__${service_file}"] -> Service["${::apache_storm::params::package_name}-${service}"]
+        File[$service_file] -> File["symlink__${service_file}"] -> Service["${apache_storm::params::package_name}-${service}"]
       }
 
     }
     'Debian', 'Ubuntu': {
-      $service_file      = "/etc/init/${::apache_storm::package_name}-${service}.conf"
+      $service_file      = "/etc/init/${apache_storm::package_name}-${service}.conf"
       $service_template  = "${module_name}/upstart-service.erb"
       $provider          = 'upstart'
 
@@ -69,10 +69,10 @@ define apache_storm::service (
       }
 
       if $ensure == 'absent' {
-        Service["${::apache_storm::params::package_name}-${service}"] -> File[$service_file]
+        Service["${apache_storm::params::package_name}-${service}"] -> File[$service_file]
       }
       else {
-        File[$service_file] -> Service["${::apache_storm::params::package_name}-${service}"]
+        File[$service_file] -> Service["${apache_storm::params::package_name}-${service}"]
       }
 
     }
@@ -81,7 +81,7 @@ define apache_storm::service (
     }
   }
 
-  service { "${::apache_storm::params::package_name}-${service}":
+  service { "${apache_storm::params::package_name}-${service}":
     ensure     => $service_ensure,
     hasstatus  => true,
     hasrestart => true,

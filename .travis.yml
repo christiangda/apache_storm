@@ -1,14 +1,32 @@
 ---
 language: ruby
 bundler_args: --without development
-script: bundle exec rake test
+script:
+  - RAKE_ENV=ci bundle exec rake validate
+  - RAKE_ENV=ci bundle exec rake lint
+  - RAKE_ENV=ci bundle exec rake spec
 rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
+  - 2.2.0
+  - 2.3.1
 env:
-  - PUPPET_VERSION="~> 3.8"
-  - PUPPET_VERSION="~> 4.0"
+  global:
+    - LIBRARIAN_PUPPET_TMP="$HOME/librarian-puppet"
+  matrix:
+  - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 3.7.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
+  - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
+  - PUPPET_VERSION="~> 4.3.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 4.4.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 4.5.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 4.6.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 4.7.0" STRICT_VARIABLES=yes
+cache:
+  - bundler
+  - directories:
+    - $HOME/librarian-puppet
 branches:
   only:
     - master
