@@ -1,91 +1,105 @@
 # Class: apache_storm::service
 # ===========================
 define apache_storm::service (
-  $service = $name,
-  $ensure  = 'present'
+  $manage_service = true,
+  $service_ensure = 'present'
 ) {
 
-  # Vars for template
-  $service_name       = $service
-  $service_user       = $apache_storm::user
-  $service_group      = $apache_storm::group
-  $service_home       = $apache_storm::params::home
-  $service_pid_file   = "${apache_storm::params::pid_path}/${apache_storm::params::package_name}-${service}.pid"
-  $service_log_file   = "${apache_storm::params::package_logs_path}/${service}.log"
-  $command_to_execute = $apache_storm::params::storm_command
-
-  if $ensure == 'absent' {
-    $ensure_file    = 'absent'
-    $ensure_symlink = 'absent'
-    $service_ensure = 'stopped'
-  }
-  else {
-    $ensure_file    = 'file'
-    $ensure_symlink = 'link'
-    $service_ensure = 'running'
+  # Validate service name
+  if ! ($name in ['nimbus', 'supervisor', 'drpc', 'logviewer', 'ui']) {
+    fail('Invalid storm daemon type.  Allowed values are: nimbus, supervisor, drpc, logviewer, ui')
   }
 
-  case $::operatingsystem {
-    'RedHat', 'Fedora', 'CentOS': {
-      $service_file      = "/lib/systemd/system/${apache_storm::params::package_name}-${service}.service"
-      $service_file_link = "/etc/systemd/system/${apache_storm::params::package_name}-${service}.service"
-      $service_template  = "${module_name}/systemd-service.erb"
-      $provider          = 'systemd'
+  # Validate manage_service
+  validate_bool($manage_service)
 
-      unless $ensure == 'absent' {
-        $maxclient = 500
-      }
-
-      file { $service_file:
-        ensure  => $ensure_file,
-        mode    => '0644',
-        content => template($service_template),
-      }
-
-      file { "symlink__${service_file}":
-        ensure => $ensure_symlink,
-        path   => $service_file_link,
-        target => $service_file,
-      }
-
-      if $ensure == 'absent' {
-        Service["${apache_storm::params::package_name}-${service}"] -> File[$service_file] -> File["symlink__${service_file}"]
-      }
-      else {
-        File[$service_file] -> File["symlink__${service_file}"] -> Service["${apache_storm::params::package_name}-${service}"]
-      }
-
-    }
-    'Debian', 'Ubuntu': {
-      $service_file      = "/etc/init/${apache_storm::package_name}-${service}.conf"
-      $service_template  = "${module_name}/upstart-service.erb"
-      $provider          = 'upstart'
-
-      # https://www.digitalocean.com/community/tutorials/the-upstart-event-system-what-it-is-and-how-to-use-it
-      file { $service_file:
-        ensure  => $ensure_file,
-        mode    => '0644',
-        content => template($service_template),
-      }
-
-      if $ensure == 'absent' {
-        Service["${apache_storm::params::package_name}-${service}"] -> File[$service_file]
-      }
-      else {
-        File[$service_file] -> Service["${apache_storm::params::package_name}-${service}"]
-      }
-
-    }
-    default: {
-      fail("\"${module_name}\" provides no service manage for \"${::operatingsystem}\"")
-    }
+  # check valid values for package ensure param
+  if ! ($service_ensure in [ 'present', 'installed', 'absent' ]) {
+    fail('Invalid ensure value.  Allowed values are: present, installed, absent')
   }
 
-  service { "${apache_storm::params::package_name}-${service}":
-    ensure     => $service_ensure,
-    hasstatus  => true,
-    hasrestart => true,
-    provider   => $provider,
+  if $manage_service {
+
+    include ::apache_storm
+
+    # Vars for template
+    $service_name       = $name
+    $service_user       = $apache_storm::user
+    $service_group      = $apache_storm::group
+    $service_home       = $apache_storm::home
+    $service_pid_file   = "${apache_storm::pid_path}/${apache_storm::package_name}-${name}.pid"
+    $service_log_file   = "${apache_storm::package_logs_path}/${name}.log"
+    $command_to_execute = $apache_storm::storm_command
+
+    if $service_ensure == 'absent' {
+      $service_ensure_file    = 'absent'
+      $service_ensure_symlink = 'absent'
+      $service_daemon_ensure  = 'stopped'
+    }
+    else {
+      $service_ensure_file    = 'file'
+      $service_ensure_symlink = 'link'
+      $service_daemon_ensure  = 'running'
+    }
+
+    case $::operatingsystem {
+      'RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux': {
+        $service_file      = "/lib/systemd/system/${apache_storm::package_name}-${name}.service"
+        $service_file_link = "/etc/systemd/system/${apache_storm::package_name}-${name}.service"
+        $service_template  = "${module_name}/systemd-service.erb"
+        $provider          = 'systemd'
+
+        file { $service_file:
+          ensure  => $service_ensure_file,
+          mode    => '0644',
+          content => template($service_template),
+        }
+
+        file { "symlink__${service_file}":
+          ensure => $service_ensure_symlink,
+          path   => $service_file_link,
+          target => $service_file,
+        }
+
+        if $service_ensure == 'absent' {
+          Service["${apache_storm::package_name}-${name}"] -> File[$service_file] -> File["symlink__${service_file}"]
+        }
+        else {
+          File[$service_file] -> File["symlink__${service_file}"] -> Service["${apache_storm::package_name}-${name}"]
+        }
+
+      }
+      'Debian', 'Ubuntu': {
+        $service_file        = "/etc/init/${apache_storm::package_name}-${name}.conf"
+        $service_template = "${module_name}/upstart-service.erb"
+        $provider         = 'upstart'
+
+        # https://www.digitalocean.com/community/tutorials/the-upstart-event-system-what-it-is-and-how-to-use-it
+        file { $service_file:
+          ensure  => $service_ensure_file,
+          mode    => '0644',
+          content => template($service_template),
+        }
+
+        if $service_ensure == 'absent' {
+          Service["${apache_storm::package_name}-${name}"] -> File[$service_file]
+        }
+        else {
+          File[$service_file] -> Service["${apache_storm::package_name}-${name}"]
+        }
+
+      }
+      default: {
+        fail("\"${module_name}\" provides no service manage for \"${::operatingsystem}\"")
+      }
+    }
+
+    service { "${apache_storm::package_name}-${name}":
+      ensure     => $service_daemon_ensure,
+      hasstatus  => true,
+      hasrestart => true,
+      provider   => $provider,
+    }
   }
 
 }

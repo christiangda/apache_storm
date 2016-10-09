@@ -8,9 +8,9 @@ describe 'apache_storm', :type => 'class' do
 
       let(:facts) { {
         :operatingsystem => distro,
-        :kernel => 'Linux',
-        :osfamily => 'Debian',
-        :lsbdistid => 'Debian'
+        :kernel          => 'Linux',
+        :osfamily        => 'Debian',
+        :lsbdistid       => 'Debian'
       } }
 
       context 'Init class tests' do

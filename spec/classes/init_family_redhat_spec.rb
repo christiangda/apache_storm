@@ -8,8 +8,8 @@ describe 'apache_storm', :type => 'class' do
 
       let(:facts) { {
         :operatingsystem => distro,
-        :kernel => 'Linux',
-        :osfamily => 'RedHat'
+        :kernel          => 'Linux',
+        :osfamily        => 'RedHat'
       } }
 
 
