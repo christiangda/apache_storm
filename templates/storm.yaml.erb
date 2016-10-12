@@ -1,3 +1,49 @@
-<% if @hash_to_render -%>
-<%= @hash_to_render.to_yaml.gsub(/^\s{2}/, '') %>
-<% end -%>
+<%-
+  # Puppet < 4 has problems with hash,  double quote all values
+  def to_numeric(anything)
+    begin
+      Integer anything
+    rescue
+      begin
+        Float anything
+      rescue
+        anything
+      end
+    end
+  end
+
+  def s_to_numeric(hash)
+    hash.each do |key,value|
+      if value.is_a?(Hash)
+        s_to_numeric(value)
+      elsif value.is_a?(Array)
+        value.each_with_index do |val,i|
+          if val.is_a?(String)
+            begin
+              value[i] = to_numeric(val)
+            rescue
+              value[i] = val
+            end
+          end
+        end
+      elsif value.is_a?(String)
+        begin
+          hash[key] = to_numeric(value)
+        rescue
+          hash[key] = value
+        end
+      else
+        hash[key] = value
+      end
+    end
+  end
+
+  if !@hash_to_render.empty?
+    if Puppet::Util::Package.versioncmp(Puppet.version, '4') >= 0
+      @output = @hash_to_render
+    else
+      @output = s_to_numeric(@hash_to_render)
+    end
+  end
+-%>
+<%= @output.to_yaml.gsub(/^\s{2}/, '') -%>
