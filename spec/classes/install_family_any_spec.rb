@@ -106,55 +106,73 @@ describe 'apache_storm::install', :type => 'class' do
         it { is_expected.to contain_file("symlink__#{install_bin_path}").with({
           :ensure => 'link',
           :path => "#{install_bin_path}",
-          :target => "#{package_bin_path}"
+          :target => "#{package_bin_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_conf_path}").with({
           :ensure => 'link',
           :path => "#{install_conf_path}",
-          :target => "#{package_conf_path}"
+          :target => "#{package_conf_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_external_path}").with({
           :ensure => 'link',
           :path => "#{install_external_path}",
-          :target => "#{package_external_path}"
+          :target => "#{package_external_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_extlib_path}").with({
           :ensure => 'link',
           :path => "#{install_extlib_path}",
-          :target => "#{package_extlib_path}"
+          :target => "#{package_extlib_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_extlib_daemon_path}").with({
           :ensure => 'link',
           :path => "#{install_extlib_daemon_path}",
-          :target => "#{package_extlib_daemon_path}"
+          :target => "#{package_extlib_daemon_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_lib_path}").with({
           :ensure => 'link',
           :path => "#{install_lib_path}",
-          :target => "#{package_lib_path}"
+          :target => "#{package_lib_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_logs_path}").with({
           :ensure => 'link',
           :path => "#{install_logs_path}",
-          :target => "#{package_logs_path}"
+          :target => "#{package_logs_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{logs_path}").with({
           :ensure => 'link',
           :path => "#{logs_path}",
-          :target => "#{package_logs_path}"
+          :target => "#{package_logs_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
         it { is_expected.to contain_file("symlink__#{install_log4j2_path}").with({
           :ensure => 'link',
           :path => "#{install_log4j2_path}",
-          :target => "#{package_log4j2_path}"
+          :target => "#{package_log4j2_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
           })
         }
 
@@ -162,6 +180,8 @@ describe 'apache_storm::install', :type => 'class' do
         it { is_expected.to contain_file("/etc/profile.d/#{package_name}.sh").with({
           :ensure => 'present',
           :mode   => '0644',
+          :owner => "#{user}",
+          :group => "#{group}"
           }).with_content(
           /export PATH\=\$PATH\:#{install_path}\/bin\n/
           ) }
