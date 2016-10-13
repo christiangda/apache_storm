@@ -95,6 +95,7 @@ define apache_storm::service (
     }
 
     service { "${apache_storm::package_name}-${name}":
+      name       => "${apache_storm::package_name}-${name}",
       ensure     => $service_daemon_ensure,
       hasstatus  => true,
       hasrestart => true,
