@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
-puppetversion = ENV.key?('PUPPET_VERSION') ? "~> #{ENV['PUPPET_VERSION']}" : ['>= 3.8']
+puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['>= 3.8']
 gem 'rake'
 gem 'puppet', puppetversion, :require => false
 gem 'puppet-syntax'

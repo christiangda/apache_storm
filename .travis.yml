@@ -1,6 +1,6 @@
 ---
 language: ruby
-bundler_args: --without development
+bundler_args: --without development --path .vendor
 script:
   - RAKE_ENV=ci bundle exec rake test
 rvm:
@@ -14,8 +14,6 @@ env:
     - LIBRARIAN_PUPPET_TMP="$HOME/librarian-puppet"
   matrix:
   - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes
-  - PUPPET_VERSION="~> 3.7.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
-  - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
   - PUPPET_VERSION="~> 4.3.0" STRICT_VARIABLES=yes
   - PUPPET_VERSION="~> 4.4.0" STRICT_VARIABLES=yes
   - PUPPET_VERSION="~> 4.5.0" STRICT_VARIABLES=yes
