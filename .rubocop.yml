@@ -206,13 +206,13 @@ Style/SpaceInsideHashLiteralBraces:
   Enabled: false
 
 Style/SpaceInsideParens:
-  Enabled: false
+  Enabled: False
 
 Style/LeadingCommentSpace:
-  Enabled: false
+  Enabled: true
 
-Style/SingleSpaceBeforeFirstArg:
-  Enabled: false
+Style/SpaceBeforeFirstArg:
+  Enabled: true
 
 Style/SpaceAfterColon:
   Enabled: false
@@ -220,8 +220,8 @@ Style/SpaceAfterColon:
 Style/SpaceAfterComma:
   Enabled: false
 
-Style/SpaceAfterControlKeyword:
-  Enabled: false
+Style/SpaceAroundKeyword:
+  Enabled: true
 
 Style/SpaceAfterMethodName:
   Enabled: false
@@ -268,9 +268,6 @@ Style/Documentation:
 Style/DefWithParentheses:
   Enabled: false
 
-Style/DeprecatedHashMethods:
-  Enabled: false
-
 Style/DotPosition:
   Enabled: false
 
@@ -285,7 +282,7 @@ Style/IndentArray:
   Enabled: false
 
 Style/IndentHash:
-  Enabled: false
+  Enabled: True
 
 Style/IndentationConsistency:
   Enabled: false
@@ -321,9 +318,6 @@ Style/TrailingWhitespace:
   Enabled: false
 
 Style/StringLiterals:
-  Enabled: false
-
-Style/TrailingComma:
   Enabled: false
 
 Style/GlobalVars:
@@ -464,7 +458,7 @@ Metrics/ParameterLists:
 Lint/RequireParentheses:
   Enabled: false
 
-Lint/SpaceBeforeFirstArg:
+Style/TrailingCommaInArguments:
   Enabled: false
 
 Style/ModuleFunction:
@@ -483,4 +477,10 @@ Style/BlockDelimiters:
   Enabled: False
 
 Style/MultilineBlockLayout:
+  Enabled: False
+
+Style/UnneededInterpolation:
+  Enabled: False
+
+Style/EmptyLinesAroundBlockBody:
   Enabled: False

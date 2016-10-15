@@ -21,10 +21,12 @@ describe 'apache_storm::service', 'type' => 'define' do
       ['nimbus', 'supervisor', 'drpc', 'logviewer', 'ui'].each do |service_name|
         context "using #{service_name}" do
           let(:title)  { "#{service_name}" }
-          let(:params) { {
-           'manage_service' => true,
-           'service_ensure' => 'present'
-          } }
+          let :params do
+            {
+              'manage_service' => true,
+              'service_ensure' => 'present'
+            }
+          end
 
           let(:service_file) {"/lib/systemd/system/#{package_name}-#{service_name}.service"}
           let(:service_file_link) {"/etc/systemd/system/#{package_name}-#{service_name}.service"}
