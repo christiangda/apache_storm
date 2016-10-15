@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
 
-puppetversion = ENV.key?('PUPPET_VERSION') ? ENV['PUPPET_VERSION']: ['>= 3.8']
-
 group :test do
   gem 'rake'
-  gem 'puppet', puppetversion, :require => false
+  gem 'puppet', ENV['PUPPET_GEM_VERSION'] || '>= 3.8.0'
   gem 'puppet-syntax'
   gem 'puppet-lint'
   gem 'puppet-doc-lint'
