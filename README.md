@@ -20,9 +20,10 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This is a [Puppet](https://puppetlabs.com/) module to manage [Apache Storm](http://storm.apache.org/).  
+With this module you can installs, configures, and manages the [Apache Storm](http://storm.apache.org/) services.
+
+This module were designed to work with [Puppet](https://puppetlabs.com/) version >= 3.8.0
 
 ## Module Description
 
