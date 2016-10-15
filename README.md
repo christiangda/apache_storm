@@ -29,15 +29,15 @@ This module were designed to work with:
 * [Puppet](https://puppetlabs.com/) version >= 3.8.0
 * [Apache Storm](http://storm.apache.org/) version >= 1.0.0
 
+**Note**
+
+* [apache_storm](https://github.com/christiangda/puppet-apache_storm) needs that you provison [Java](https://www.java.com) by your own way.
+
+
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+[apache_storm](https://github.com/christiangda/puppet-apache_storm) is a module designed to provision
+[Apache Storm](http://storm.apache.org/) from its binary package downloaded from a mirror.
 
 ## Setup
 
@@ -63,8 +63,19 @@ for upgrading, you may wish to include an additional section here: Upgrading
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+The default
+```puppet
+include java
+
+include ::apache_storm
+
+::apache_storm::service { 'nimbus': }
+::apache_storm::service { 'ui': }
+::apache_storm::service { 'supervisor': }
+::apache_storm::service { 'logviewer': }
+::apache_storm::service { 'drpc': }
+
+```
 
 ## Reference
 
