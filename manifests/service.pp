@@ -20,7 +20,7 @@ define apache_storm::service (
 
   if $manage_service {
 
-    include ::apache_storm
+    include apache_storm
 
     # Vars for template
     $service_name       = $name
@@ -95,8 +95,8 @@ define apache_storm::service (
     }
 
     service { "${apache_storm::package_name}-${name}":
-      name       => "${apache_storm::package_name}-${name}",
       ensure     => $service_daemon_ensure,
+      name       => "${apache_storm::package_name}-${name}",
       hasstatus  => true,
       hasrestart => true,
       provider   => $provider,

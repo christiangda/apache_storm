@@ -15,9 +15,10 @@ class apache_storm::install inherits apache_storm {
   ]
 
   # Install dependecies (OS Independent)
-  ensure_packages(['bash','wget','tar'], {'ensure' => 'present'})
-
-  #
+  package { 'install__wget':
+    ensure => 'installed',
+    name   => 'wget',
+  } ~>
   group { $apache_storm::group:
     ensure  => $apache_storm::ensure,
   } ~>
@@ -126,7 +127,7 @@ class apache_storm::install inherits apache_storm {
     ensure  => $apache_storm::ensure,
     mode    => '0644',
     content => "export PATH=\$PATH:${apache_storm::install_path}/bin\n",
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
+    owner   => $apache_storm::user,
+    group   => $apache_storm::group,
   }
 }

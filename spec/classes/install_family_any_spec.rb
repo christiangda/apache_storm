@@ -11,15 +11,16 @@ describe 'apache_storm::install', :type => 'class' do
       let(:user)  {'storm'}
       let(:group) {'storm'}
 
-      let(:version)       {'1.0.2'}
-      let(:repo_base)     {'http://apache.claz.org/storm'}
-      let(:package_name)  {'apache-storm'}
-      let(:install_path)  {"/opt/#{package_name}"}
-      let(:config_path)   {"/etc/#{package_name}"}
-      let(:releases_path) {"#{install_path}/releases"}
-      let(:sources_path)  {"#{install_path}/sources"}
-      let(:logs_path)     {"/var/log/#{package_name}"}
-      let(:pid_path)      {"/var/run/#{package_name}"}
+      let(:version)         {'1.0.2'}
+      let(:repo_base)       {'http://apache.claz.org/storm'}
+      let(:package_name)    {'apache-storm'}
+      let(:install_path)    {"/opt/#{package_name}"}
+      let(:config_path)     {"/etc/#{package_name}"}
+      let(:releases_path)   {"#{install_path}/releases"}
+      let(:sources_path)    {"#{install_path}/sources"}
+      let(:logs_path)       {"/var/log/#{package_name}"}
+      let(:pid_path)        {"/var/run/#{package_name}"}
+      let(:storm_local_dir) {"#{install_path}/storm_local_dir"}
 
       let(:package_release)   {"#{package_name}-#{version}"}
       let(:home)              {"#{releases_path}/#{package_release}"}
@@ -55,10 +56,6 @@ describe 'apache_storm::install', :type => 'class' do
         it { is_expected.to contain_class('apache_storm') }
         it { is_expected.to contain_class('apache_storm::params') }
 
-        it { is_expected.to contain_package('bash').with( { :ensure => 'present'} ) }
-        it { is_expected.to contain_package('wget').with( { :ensure => 'present'} ) }
-        it { is_expected.to contain_package('tar').with(  { :ensure => 'present'} ) }
-
         it { is_expected.to contain_group("#{group}").with({
             :ensure => 'present'
           })
@@ -74,10 +71,14 @@ describe 'apache_storm::install', :type => 'class' do
         }
 
         # Fixed Paths and files
-        it { is_expected.to contain_file("#{install_path}").with( { :owner => "#{user}", :group => "#{group}" }) }
-        it { is_expected.to contain_file("#{releases_path}").with({ :owner => "#{user}", :group => "#{group}" }) }
-        it { is_expected.to contain_file("#{sources_path}").with( { :owner => "#{user}", :group => "#{group}" }) }
-        it { is_expected.to contain_file("#{pid_path}").with(     { :owner => "#{user}", :group => "#{group}" }) }
+        it { is_expected.to contain_file("#{install_path}").with(   { :ensure => 'directory', :owner => "#{user}", :group => "#{group}" }) }
+        it { is_expected.to contain_file("#{releases_path}").with(  { :ensure => 'directory', :owner => "#{user}", :group => "#{group}" }) }
+        it { is_expected.to contain_file("#{sources_path}").with(   { :ensure => 'directory', :owner => "#{user}", :group => "#{group}" }) }
+        it { is_expected.to contain_file("#{pid_path}").with(       { :ensure => 'directory', :owner => "#{user}", :group => "#{group}" }) }
+        it { is_expected.to contain_file("#{storm_local_dir}").with({ :ensure => 'directory', :owner => "#{user}", :group => "#{group}" }) }
+
+        # neccesary packages
+        it { is_expected.to contain_package('install__wget').with( { :ensure => 'installed'} ) }
 
         # Download and Install
         it { should contain_exec("download__#{package_file}").with({
@@ -114,6 +115,14 @@ describe 'apache_storm::install', :type => 'class' do
         it { is_expected.to contain_file("symlink__#{install_conf_path}").with({
           :ensure => 'link',
           :path => "#{install_conf_path}",
+          :target => "#{package_conf_path}",
+          :owner => "#{user}",
+          :group => "#{group}"
+          })
+        }
+        it { is_expected.to contain_file("symlink__#{config_path}").with({
+          :ensure => 'link',
+          :path => "#{config_path}",
           :target => "#{package_conf_path}",
           :owner => "#{user}",
           :group => "#{group}"

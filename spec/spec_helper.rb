@@ -6,3 +6,5 @@ RSpec.configure do |c|
   Puppet.settings[:ordering]='random' if ENV['ORDERING_RANDOM'] == 'true'
   c.parser = 'future' if ENV['FUTURE_PARSER'] == 'true'
 end
+
+at_exit { RSpec::Puppet::Coverage.report! }
