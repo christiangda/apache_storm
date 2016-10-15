@@ -1,4 +1,8 @@
-# Apache Storm provisioner Module
+# [Puppet](https://puppetlabs.com/) apache_storm module
+
+[![Build Status](https://travis-ci.org/christiangda/puppet-apache_storm.svg?branch=master)](https://travis-ci.org/christiangda/puppet-apache_storm)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/christiangda/apache_storm.svg)](https://forge.puppetlabs.com/christiangda/apache_storm)
+[![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/christiangda/apache_storm.svg)](https://forge.puppetlabs.com/christiangda/apache_storm/scores)
 
 #### Table of Contents
 
@@ -101,8 +105,19 @@ bundle exec rake -T
 bundle exec rake lint
 ```
 
-## Release Notes/Contributors/Etc **Optional**
+## Development / contributing
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+1. [Fork it](https://github.com/christiangda/puppet-apache_storm#fork-destination-box)
+2. [Clone it](https://github.com/christiangda/puppet-apache_storm.git) (`git clone https://github.com/christiangda/puppet-apache_storm.git; cd puppet-apache_storm`)
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Commit your changes (`git commit -am 'Added some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. [Create new Pull Request](https://github.com/christiangda/puppet-apache_storm/pull/new/master)
+
+Of course, bug reports and suggestions for improvements are always
+welcome. GitHub pull requests are even better! :-)
+
+You can also support my work on apache_storm via
+[Gratipay](https://gratipay.com/~645e3ac3c159/).
+
+[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png)](https://gratipay.com/~645e3ac3c159/)

@@ -20,7 +20,7 @@ define apache_storm::service (
 
   if $manage_service {
 
-    include apache_storm
+    include ::apache_storm
 
     # Vars for template
     $service_name       = $name

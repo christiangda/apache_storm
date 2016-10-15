@@ -3,7 +3,9 @@ require 'rspec/core/rake_task'
 require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppet_blacksmith/rake_tasks'
-
+require 'puppet-syntax/tasks/puppet-syntax'
+require 'metadata-json-lint/rake_task'
+require 'rubocop/rake_task'
 
 exclude_paths = [
   'pkg/**/*',
@@ -50,4 +52,13 @@ task :validate do
   end
 end
 
-task :test => [:lint, :validate, :spec]
+task :test => [
+  :metadata_lint,
+  :syntax,
+  :lint,
+  :rubocop,
+  :validate,
+  :spec
+]
+
+task :default => :test
