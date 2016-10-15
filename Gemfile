@@ -22,13 +22,13 @@ group :test do
   gem 'puppet-lint-variable_contains_upcase'
   gem 'metadata-json-lint'
   gem 'puppetlabs_spec_helper'
+  gem "travis"
+  gem "travis-lint"
+  gem "puppet-blacksmith"
   gem 'json_pure', '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
 end
 
 group :development do
-  gem "travis"
-  gem "travis-lint"
-  gem "puppet-blacksmith"
   gem 'rubocop'
 end
 
