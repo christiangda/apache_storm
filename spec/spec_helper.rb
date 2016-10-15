@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'puppetlabs_spec_helper/module_spec_helper'
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 
 RSpec.configure do |c|
   Puppet.settings[:strict_variables] = true if ENV['STRICT_VARIABLES'] == 'true'

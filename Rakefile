@@ -5,6 +5,7 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet_blacksmith/rake_tasks'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
+require 'simplecov'
 # require 'rubocop/rake_task'
 
 exclude_paths = [
@@ -25,7 +26,7 @@ PuppetLint::RakeTask.new :lint do |config|
 end
 
 Blacksmith::RakeTask.new do |t|
-  t.tag_pattern = "v%s" # Use a custom pattern with git tag. %s is replaced with the version number.
+  t.tag_pattern = 'v%s' # Use a custom pattern with git tag. %s is replaced with the version number.
   t.build = false # do not build the module nor push it to the Forge, just do the tagging [:clean, :tag, :bump_commit]
 end
 
@@ -37,6 +38,13 @@ RSpec::Core::RakeTask.new(:spec_verbose) do |t|
     '--format CI::Reporter::RSpecFormatter',
     '--color'
   ]
+end
+
+SimpleCov.start do
+  add_filter '/.vendor/'
+  add_filter '/samples/'
+  add_filter '/.bundle/'
+  add_filter '/templates/'
 end
 
 # RuboCop::RakeTask.new

@@ -6,7 +6,6 @@ group :test do
   gem 'puppet-syntax'
   gem 'puppet-lint'
   gem 'puppet-doc-lint'
-  gem 'puppet-lint-appends-check'
   gem 'puppet-lint-absolute_classname-check'
   gem 'puppet-lint-leading_zero-check'
   gem 'puppet-lint-trailing_comma-check'
@@ -24,9 +23,10 @@ group :test do
   gem 'rspec-puppet-facts'
   gem 'rspec-puppet-utils'
   gem 'metadata-json-lint'
-  gem "puppet-blacksmith"
+  gem 'puppet-blacksmith'
   gem 'json_pure'                , '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
-  gem "codeclimate-test-reporter", require: false
+  gem 'codeclimate-test-reporter', require: false
+  gem 'simplecov'                , require: false
 end
 
 group :development do
@@ -34,7 +34,7 @@ group :development do
 end
 
 group :system_tests do
-  gem "beaker"
-  gem "beaker-rspec"
-  gem "beaker-puppet_install_helper"
+  gem 'beaker'
+  gem 'beaker-rspec'
+  gem 'beaker-puppet_install_helper'
 end

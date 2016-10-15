@@ -46,70 +46,69 @@ Lint/AssignmentInCondition:
 Style/SpaceBeforeComment:
   Enabled: true
 
+Metrics/ModuleLength:
+  Enabled: False
+
 # DISABLED - not useful
 Style/HashSyntax:
-  Enabled: false
+  Enabled: False
 
 # USES: as shortcut for non nil&valid checking a = x() and a.empty?
 # DISABLED - not useful
 Style/AndOr:
-  Enabled: false
+  Enabled: False
 
 # DISABLED - not useful
 Style/RedundantSelf:
-  Enabled: false
-
-# DISABLED - not useful
-Metrics/MethodLength:
-  Enabled: false
+  Enabled: False
 
 # DISABLED - not useful
 Style/WhileUntilModifier:
-  Enabled: false
+  Enabled: False
 
 # DISABLED - the offender is just haskell envy
 Lint/AmbiguousRegexpLiteral:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/Eval:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/BlockAlignment:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/DefEndAlignment:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/EndAlignment:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/DeprecatedClassMethods:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/Loop:
-  Enabled: false
+  Enabled: False
 
 # DISABLED
 Lint/ParenthesesAsGroupedExpression:
-  Enabled: false
+  Enabled: False
 
 Lint/RescueException:
-  Enabled: false
+  Enabled: False
 
 Lint/StringConversionInInterpolation:
-  Enabled: false
+  Enabled: False
 
 Lint/UnusedBlockArgument:
-  Enabled: false
+  Enabled: False
 
 Lint/UnusedMethodArgument:
-  Enabled: false
+  Enabled: False
 
 Lint/UselessAccessModifier:
   Enabled: true
@@ -121,89 +120,95 @@ Lint/Void:
   Enabled: true
 
 Style/AccessModifierIndentation:
-  Enabled: false
+  Enabled: False
 
 Style/AccessorMethodName:
-  Enabled: false
+  Enabled: False
 
 Style/Alias:
-  Enabled: false
+  Enabled: False
 
 Style/AlignArray:
-  Enabled: false
+  Enabled: False
 
 Style/AlignHash:
-  Enabled: false
+  Enabled: False
 
 Style/AlignParameters:
-  Enabled: false
+  Enabled: False
 
 Metrics/BlockNesting:
-  Enabled: false
+  Enabled: False
 
 Style/AsciiComments:
-  Enabled: false
+  Enabled: False
 
 Style/Attr:
-  Enabled: false
+  Enabled: False
 
 Style/BracesAroundHashParameters:
-  Enabled: false
+  Enabled: False
 
 Style/CaseEquality:
-  Enabled: false
+  Enabled: False
 
 Style/CaseIndentation:
-  Enabled: false
+  Enabled: False
 
 Style/CharacterLiteral:
-  Enabled: false
+  Enabled: False
 
 Style/ClassAndModuleCamelCase:
-  Enabled: false
+  Enabled: False
 
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Enabled: False
 
 Style/ClassCheck:
-  Enabled: false
+  Enabled: False
 
 Metrics/ClassLength:
-  Enabled: false
+  Enabled: False
+
+Metrics/MethodLength:
+  Enabled: False
+
+Metrics/BlockLength:
+  Enabled: False
 
 Style/ClassMethods:
-  Enabled: false
+  Enabled: False
 
 Style/ClassVars:
-  Enabled: false
+  Enabled: False
 
 Style/WhenThen:
-  Enabled: false
+  Enabled: False
 
 # DISABLED - not useful
 Style/WordArray:
-  Enabled: false
+  Enabled: False
 
 Style/UnneededPercentQ:
-  Enabled: false
+  Enabled: False
 
 Style/Tab:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceBeforeSemicolon:
-  Enabled: false
+  Enabled: False
 
 Style/TrailingBlankLines:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceInsideBlockBraces:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceInsideBrackets:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceInsideHashLiteralBraces:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceInsideParens:
   Enabled: False
@@ -215,263 +220,263 @@ Style/SpaceBeforeFirstArg:
   Enabled: true
 
 Style/SpaceAfterColon:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceAfterComma:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceAroundKeyword:
   Enabled: true
 
 Style/SpaceAfterMethodName:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceAfterNot:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceAfterSemicolon:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceAroundEqualsInParameterDefault:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceAroundOperators:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceBeforeBlockBraces:
-  Enabled: false
+  Enabled: False
 
 Style/SpaceBeforeComma:
-  Enabled: false
+  Enabled: False
 
 Style/CollectionMethods:
-  Enabled: false
+  Enabled: False
 
 Style/CommentIndentation:
-  Enabled: false
+  Enabled: False
 
 Style/ColonMethodCall:
-  Enabled: false
+  Enabled: False
 
 Style/CommentAnnotation:
-  Enabled: false
+  Enabled: False
 
 Metrics/CyclomaticComplexity:
-  Enabled: false
+  Enabled: False
 
 Style/ConstantName:
-  Enabled: false
+  Enabled: True
 
 Style/Documentation:
-  Enabled: false
+  Enabled: False
 
 Style/DefWithParentheses:
-  Enabled: false
+  Enabled: False
 
 Style/DotPosition:
-  Enabled: false
+  Enabled: False
 
 # DISABLED - used for converting to bool
 Style/DoubleNegation:
-  Enabled: false
+  Enabled: False
 
 Style/EachWithObject:
-  Enabled: false
+  Enabled: False
 
 Style/IndentArray:
-  Enabled: false
+  Enabled: True
 
 Style/IndentHash:
   Enabled: True
 
 Style/IndentationConsistency:
-  Enabled: false
+  Enabled: False
 
 Style/IndentationWidth:
-  Enabled: false
+  Enabled: True
 
 Style/EmptyLines:
-  Enabled: false
+  Enabled: False
 
 Style/EmptyLineBetweenDefs:
-  Enabled: false
+  Enabled: False
 
 Style/EmptyLinesAroundAccessModifier:
-  Enabled: false
+  Enabled: True
 
 Style/EmptyLiteral:
-  Enabled: false
+  Enabled: True
 
 Metrics/LineLength:
-  Enabled: false
+  Enabled: False
 
 Style/MethodCallParentheses:
-  Enabled: false
+  Enabled: True
 
 Style/MethodDefParentheses:
-  Enabled: false
+  Enabled: True
 
 Style/LineEndConcatenation:
-  Enabled: false
+  Enabled: True
 
 Style/TrailingWhitespace:
-  Enabled: false
+  Enabled: True
 
 Style/StringLiterals:
-  Enabled: false
+  Enabled: True
 
 Style/GlobalVars:
-  Enabled: false
+  Enabled: False
 
 Style/GuardClause:
-  Enabled: false
+  Enabled: False
 
 Style/IfUnlessModifier:
-  Enabled: false
+  Enabled: False
 
 Style/MultilineIfThen:
-  Enabled: false
+  Enabled: False
 
 Style/NegatedIf:
-  Enabled: false
+  Enabled: False
 
 Style/NegatedWhile:
-  Enabled: false
+  Enabled: False
 
 Style/Next:
-  Enabled: false
+  Enabled: False
 
 Style/SingleLineBlockParams:
-  Enabled: false
+  Enabled: False
 
 Style/SingleLineMethods:
-  Enabled: false
+  Enabled: False
 
 Style/SpecialGlobalVars:
-  Enabled: false
+  Enabled: False
 
 Style/TrivialAccessors:
-  Enabled: false
+  Enabled: False
 
 Style/UnlessElse:
-  Enabled: false
+  Enabled: False
 
 Style/VariableInterpolation:
-  Enabled: false
+  Enabled: False
 
 Style/VariableName:
-  Enabled: false
+  Enabled: False
 
 Style/WhileUntilDo:
-  Enabled: false
+  Enabled: False
 
 Style/EvenOdd:
-  Enabled: false
+  Enabled: False
 
 Style/FileName:
-  Enabled: false
+  Enabled: False
 
 Style/For:
-  Enabled: false
+  Enabled: False
 
 Style/Lambda:
-  Enabled: false
+  Enabled: False
 
 Style/MethodName:
-  Enabled: false
+  Enabled: False
 
 Style/MultilineTernaryOperator:
-  Enabled: false
+  Enabled: False
 
 Style/NestedTernaryOperator:
-  Enabled: false
+  Enabled: False
 
 Style/NilComparison:
-  Enabled: false
+  Enabled: False
 
 Style/FormatString:
-  Enabled: false
+  Enabled: False
 
 Style/MultilineBlockChain:
-  Enabled: false
+  Enabled: False
 
 Style/Semicolon:
-  Enabled: false
+  Enabled: False
 
 Style/SignalException:
-  Enabled: false
+  Enabled: False
 
 Style/NonNilCheck:
-  Enabled: false
+  Enabled: False
 
 Style/Not:
-  Enabled: false
+  Enabled: False
 
 Style/NumericLiterals:
-  Enabled: false
+  Enabled: False
 
 Style/OneLineConditional:
-  Enabled: false
+  Enabled: False
 
 Style/OpMethod:
-  Enabled: false
+  Enabled: False
 
 Style/ParenthesesAroundCondition:
-  Enabled: false
+  Enabled: False
 
 Style/PercentLiteralDelimiters:
-  Enabled: false
+  Enabled: False
 
 Style/PerlBackrefs:
-  Enabled: false
+  Enabled: False
 
 Style/PredicateName:
-  Enabled: false
+  Enabled: False
 
 Style/RedundantException:
-  Enabled: false
+  Enabled: False
 
 Style/SelfAssignment:
-  Enabled: false
+  Enabled: False
 
 Style/Proc:
-  Enabled: false
+  Enabled: False
 
 Style/RaiseArgs:
-  Enabled: false
+  Enabled: False
 
 Style/RedundantBegin:
-  Enabled: false
+  Enabled: False
 
 Style/RescueModifier:
-  Enabled: false
+  Enabled: False
 
 Style/RegexpLiteral:
-  Enabled: false
+  Enabled: False
 
 Lint/UnderscorePrefixedVariableName:
-  Enabled: false
+  Enabled: False
 
 Metrics/ParameterLists:
-  Enabled: false
+  Enabled: False
 
 Lint/RequireParentheses:
-  Enabled: false
+  Enabled: False
 
 Style/TrailingCommaInArguments:
-  Enabled: false
+  Enabled: False
 
 Style/ModuleFunction:
-  Enabled: false
+  Enabled: False
 
 Lint/Debugger:
-  Enabled: false
+  Enabled: False
 
 Style/IfWithSemicolon:
-  Enabled: false
+  Enabled: False
 
 Style/Encoding:
-  Enabled: false
+  Enabled: True
 
 Style/BlockDelimiters:
   Enabled: False
