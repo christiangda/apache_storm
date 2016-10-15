@@ -5,7 +5,7 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet_blacksmith/rake_tasks'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
-#require 'rubocop/rake_task'
+# require 'rubocop/rake_task'
 
 exclude_paths = [
   'pkg/**/*',
@@ -39,7 +39,7 @@ RSpec::Core::RakeTask.new(:spec_verbose) do |t|
   ]
 end
 
-#RuboCop::RakeTask.new
+# RuboCop::RakeTask.new
 
 task :test => [
   :metadata_lint,
