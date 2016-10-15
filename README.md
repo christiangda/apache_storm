@@ -1,6 +1,8 @@
 # [Puppet](https://puppetlabs.com/) apache_storm module
 
 [![Build Status](https://travis-ci.org/christiangda/puppet-apache_storm.svg?branch=master)](https://travis-ci.org/christiangda/puppet-apache_storm)
+[![Code Climate](https://codeclimate.com/github/christiangda/puppet-apache_storm/badges/gpa.svg)](https://codeclimate.com/github/christiangda/puppet-apache_storm)
+[![Test Coverage](https://codeclimate.com/github/christiangda/puppet-apache_storm/badges/coverage.svg)](https://codeclimate.com/github/christiangda/puppet-apache_storm/coverage)
 [![Issue Count](https://codeclimate.com/github/christiangda/puppet-apache_storm/badges/issue_count.svg)](https://codeclimate.com/github/christiangda/puppet-apache_storm)
 [![Puppet Forge](http://img.shields.io/puppetforge/v/christiangda/apache_storm.svg)](https://forge.puppetlabs.com/christiangda/apache_storm)
 [![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/christiangda/apache_storm.svg)](https://forge.puppetlabs.com/christiangda/apache_storm/scores)
@@ -23,7 +25,9 @@
 This is a [Puppet](https://puppetlabs.com/) module to manage [Apache Storm](http://storm.apache.org/).  
 With this module you can installs, configures, and manages the [Apache Storm](http://storm.apache.org/) services.
 
-This module were designed to work with [Puppet](https://puppetlabs.com/) version >= 3.8.0
+This module were designed to work with:
+* [Puppet](https://puppetlabs.com/) version >= 3.8.0
+* [Apache Storm](http://storm.apache.org/) version >= 1.0.0
 
 ## Module Description
 

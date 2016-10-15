@@ -6,6 +6,7 @@ group :test do
   gem 'puppet-syntax'
   gem 'puppet-lint'
   gem 'puppet-doc-lint'
+  gem 'puppet-lint-appends-check'
   gem 'puppet-lint-absolute_classname-check'
   gem 'puppet-lint-leading_zero-check'
   gem 'puppet-lint-trailing_comma-check'
@@ -13,6 +14,9 @@ group :test do
   gem 'puppet-lint-classes_and_types_beginning_with_digits-check'
   gem 'puppet-lint-unquoted_string-check'
   gem 'puppet-lint-variable_contains_upcase'
+  gem 'puppet-lint-undef_in_function-check'
+  gem 'puppet-lint-file_ensure-check'
+  gem 'puppet-lint-empty_string-check'
   gem 'puppetlabs_spec_helper'
   gem 'rspec'
   gem 'rspec-core'
@@ -21,7 +25,8 @@ group :test do
   gem 'rspec-puppet-utils'
   gem 'metadata-json-lint'
   gem "puppet-blacksmith"
-  gem 'json_pure', '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
+  gem 'json_pure'                , '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
+  gem "codeclimate-test-reporter", require: false
 end
 
 group :development do
