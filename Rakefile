@@ -38,7 +38,7 @@ RSpec::Core::RakeTask.new(:spec_verbose) do |t|
   ]
 end
 
-RuboCop::RakeTask.new
+#RuboCop::RakeTask.new
 
 task :test => [
   :metadata_lint,
