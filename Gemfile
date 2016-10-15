@@ -8,11 +8,6 @@ group :test do
   gem 'puppet-syntax'
   gem 'puppet-lint'
   gem 'puppet-doc-lint'
-  gem 'rspec'
-  gem 'rspec-core'
-  gem 'rspec-puppet'
-  gem 'rspec-puppet-facts'
-  gem 'rspec-puppet-utils'
   gem 'puppet-lint-absolute_classname-check'
   gem 'puppet-lint-leading_zero-check'
   gem 'puppet-lint-trailing_comma-check'
@@ -20,10 +15,13 @@ group :test do
   gem 'puppet-lint-classes_and_types_beginning_with_digits-check'
   gem 'puppet-lint-unquoted_string-check'
   gem 'puppet-lint-variable_contains_upcase'
-  gem 'metadata-json-lint'
   gem 'puppetlabs_spec_helper'
-  gem "travis"
-  gem "travis-lint"
+  gem 'rspec'
+  gem 'rspec-core'
+  gem 'rspec-puppet'
+  gem 'rspec-puppet-facts'
+  gem 'rspec-puppet-utils'
+  gem 'metadata-json-lint'
   gem "puppet-blacksmith"
   gem 'json_pure', '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
 end
