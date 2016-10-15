@@ -89,26 +89,9 @@ gem install bundler
 bundle install --path .vendor
 ```            
 
-### Ignore this folder in .gitignore or globally.
-
-### We can already use puppet-lint.
-```bash
-bundle exec puppet-lint
-```            
-
-### We can already use rspec-puppet
-```bash
-bundle exec rspec-puppet-init
-```
-
 ### We can already use rake -T to see options
 ```bash
-bundle exec rake -T
-```
-
-### We can already use rake -T to see options
-```bash
-bundle exec rake lint
+bundle exec rubocop && bundle exec rake test
 ```
 
 ## Development / contributing
