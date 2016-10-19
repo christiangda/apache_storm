@@ -15,32 +15,17 @@ class apache_storm::params {
   $pid_path      = "/var/run/${package_name}"
   $releases_path = "${install_path}/releases"
   $sources_path  = "${install_path}/sources"
+  $current_path  = "${install_path}/current"
 
   $package_release   = "${package_name}-${version}"
   $package_file      = "${package_release}.tar.gz"
   $package_uri       = "${repo_base}/${package_release}/${package_file}"
   $package_file_path = "${sources_path}/${package_file}"
-  $home              = "${releases_path}/${package_release}"
+  $releases_home     = "${releases_path}/${package_release}"
 
-  $package_bin_path           = "${home}/bin"
-  $package_conf_path          = "${home}/conf"
-  $package_external_path      = "${home}/external"
-  $package_extlib_path        = "${home}/extlib"
-  $package_extlib_daemon_path = "${home}/extlib-daemon"
-  $package_lib_path           = "${home}/lib"
-  $package_logs_path          = "${home}/logs"
-  $package_log4j2_path        = "${home}/log4j2"
-
-  $install_bin_path           = "${install_path}/bin"
-  $install_conf_path          = "${install_path}/conf"
-  $install_external_path      = "${install_path}/external"
-  $install_extlib_path        = "${install_path}/extlib"
-  $install_extlib_daemon_path = "${install_path}/extlib-daemon"
-  $install_lib_path           = "${install_path}/lib"
-  $install_logs_path          = "${install_path}/logs"
-  $install_log4j2_path        = "${install_path}/log4j2"
-
-  $storm_command              = "${package_bin_path}/storm"
+  $package_bin_path  = "${releases_home}/bin"
+  $package_logs_path = "${releases_home}/logs"
+  $storm_command     = "${package_bin_path}/storm"
 
   ##############################################################################
   # Config Hashes

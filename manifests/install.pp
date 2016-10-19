@@ -53,73 +53,10 @@ class apache_storm::install inherits apache_storm {
     owner  => $apache_storm::user,
     group  => $apache_storm::group,
   } ~>
-  file { "symlink__${apache_storm::install_bin_path}":
+  file { "symlink__${apache_storm::current_path}":
     ensure => 'link',
-    path   => $apache_storm::install_bin_path,
-    target => $apache_storm::package_bin_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_conf_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_conf_path,
-    target => $apache_storm::package_conf_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::config_path}":
-    ensure => 'link',
-    path   => $apache_storm::config_path,
-    target => $apache_storm::package_conf_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_external_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_external_path,
-    target => $apache_storm::package_external_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_extlib_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_extlib_path,
-    target => $apache_storm::package_extlib_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_extlib_daemon_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_extlib_daemon_path,
-    target => $apache_storm::package_extlib_daemon_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_lib_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_lib_path,
-    target => $apache_storm::package_lib_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_logs_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_logs_path,
-    target => $apache_storm::package_logs_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::logs_path}":
-    ensure => 'link',
-    path   => $apache_storm::logs_path,
-    target => $apache_storm::package_logs_path,
-    owner  => $apache_storm::user,
-    group  => $apache_storm::group,
-  } ~>
-  file { "symlink__${apache_storm::install_log4j2_path}":
-    ensure => 'link',
-    path   => $apache_storm::install_log4j2_path,
-    target => $apache_storm::package_log4j2_path,
+    path   => $apache_storm::current_path,
+    target => $apache_storm::releases_home,
     owner  => $apache_storm::user,
     group  => $apache_storm::group,
   } ~>

@@ -26,7 +26,7 @@ define apache_storm::service (
     $service_name       = $name
     $service_user       = $apache_storm::user
     $service_group      = $apache_storm::group
-    $service_home       = $apache_storm::home
+    $service_home       = $apache_storm::releases_home
     $service_pid_file   = "${apache_storm::pid_path}/${apache_storm::package_name}-${name}.pid"
     $service_log_file   = "${apache_storm::package_logs_path}/${name}.log"
     $command_to_execute = $apache_storm::storm_command

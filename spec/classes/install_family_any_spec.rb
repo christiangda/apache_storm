@@ -15,33 +15,19 @@ describe 'apache_storm::install', :type => 'class' do
       let(:config_path)     { "/etc/#{package_name}" }
       let(:releases_path)   { "#{install_path}/releases" }
       let(:sources_path)    { "#{install_path}/sources" }
+      let(:current_path)    { "#{install_path}/current" }
       let(:logs_path)       { "/var/log/#{package_name}" }
       let(:pid_path)        { "/var/run/#{package_name}" }
       let(:storm_local_dir) { "#{install_path}/storm_local_dir" }
 
       let(:package_release)   { "#{package_name}-#{version}" }
-      let(:home)              { "#{releases_path}/#{package_release}" }
+      let(:releases_home)     { "#{releases_path}/#{package_release}" }
       let(:package_file)      { "#{package_release}.tar.gz" }
       let(:package_file_path) { "#{sources_path}/#{package_file}" }
       let(:package_uri)       { "#{repo_base}/#{package_release}/#{package_file}" }
 
-      let(:package_bin_path)           { "#{home}/bin" }
-      let(:package_conf_path)          { "#{home}/conf" }
-      let(:package_external_path)      { "#{home}/external" }
-      let(:package_extlib_path)        { "#{home}/extlib" }
-      let(:package_extlib_daemon_path) { "#{home}/extlib-daemon" }
-      let(:package_lib_path)           { "#{home}/lib" }
-      let(:package_logs_path)          { "#{home}/logs" }
-      let(:package_log4j2_path)        { "#{home}/log4j2" }
-
-      let(:install_bin_path)           { "#{install_path}/bin" }
-      let(:install_conf_path)          { "#{install_path}/conf" }
-      let(:install_external_path)      { "#{install_path}/external" }
-      let(:install_extlib_path)        { "#{install_path}/extlib" }
-      let(:install_extlib_daemon_path) { "#{install_path}/extlib-daemon" }
-      let(:install_lib_path)           { "#{install_path}/lib" }
-      let(:install_logs_path)          { "#{install_path}/logs" }
-      let(:install_log4j2_path)        { "#{install_path}/log4j2" }
+      let(:package_bin_path)           { "#{releases_home}/bin" }
+      let(:package_logs_path)          { "#{releases_home}/logs" }
 
       ##########################################################################
       # Contexts
@@ -141,100 +127,10 @@ describe 'apache_storm::install', :type => 'class' do
 
         # Symbolic links
         it do
-          is_expected.to contain_file("symlink__#{install_bin_path}").with(
+          is_expected.to contain_file("symlink__#{current_path}").with(
             'ensure' => 'link',
-            'path' => "#{install_bin_path}",
-            'target' => "#{package_bin_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_conf_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_conf_path}",
-            'target' => "#{package_conf_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{config_path}").with(
-            'ensure' => 'link',
-            'path' => "#{config_path}",
-            'target' => "#{package_conf_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_external_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_external_path}",
-            'target' => "#{package_external_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_extlib_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_extlib_path}",
-            'target' => "#{package_extlib_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_extlib_daemon_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_extlib_daemon_path}",
-            'target' => "#{package_extlib_daemon_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_lib_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_lib_path}",
-            'target' => "#{package_lib_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_logs_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_logs_path}",
-            'target' => "#{package_logs_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{logs_path}").with(
-            'ensure' => 'link',
-            'path' => "#{logs_path}",
-            'target' => "#{package_logs_path}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
-          )
-        end
-
-        it do
-          is_expected.to contain_file("symlink__#{install_log4j2_path}").with(
-            'ensure' => 'link',
-            'path' => "#{install_log4j2_path}",
-            'target' => "#{package_log4j2_path}",
+            'path' => "#{current_path}",
+            'target' => "#{releases_home}",
             'owner' => "#{user}",
             'group' => "#{group}"
           )
