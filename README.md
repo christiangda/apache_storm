@@ -88,7 +88,25 @@ with things. (We are working on automating this section!)
 
 This is where you list OS compatibility, version compatibility, etc.
 
-## Development
+## Development / Contributing
+
+### For the impatient
+
+1. [Fork it](https://github.com/christiangda/puppet-apache_storm#fork-destination-box) / [Clone it](https://github.com/christiangda/puppet-apache_storm.git) (`git clone https://github.com/christiangda/puppet-apache_storm.git; cd puppet-apache_storm`)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Install bundler app first (`gem install bundler`)
+4. Install rubygems dependecies in .vendor folder (`bundle install --path .vendor`)
+5. Make your changes / improvements / fixes / etc, and of course **your Unit Test** for new code
+6. Run the tests (`bundle exec rubocop && bundle exec rake test`)
+6. Commit your changes (`git add . && git commit -m 'Added some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. [Create new Pull Request](https://github.com/christiangda/puppet-apache_storm/pull/new/master)
+
+This code has Unit Tests, and was builded using:
+* [Rubocop](https://github.com/bbatsov/rubocop)
+* [rspec-puppet](http://rspec-puppet.com/)
+* [puppet-blacksmith](https://github.com/voxpupuli/puppet-blacksmith)
+* and others
 
 ### Install rubygems first
 ```bash
@@ -105,17 +123,7 @@ bundle install --path .vendor
 bundle exec rubocop && bundle exec rake test
 ```
 
-## Development / contributing
-
-1. [Fork it](https://github.com/christiangda/puppet-apache_storm#fork-destination-box)
-2. [Clone it](https://github.com/christiangda/puppet-apache_storm.git) (`git clone https://github.com/christiangda/puppet-apache_storm.git; cd puppet-apache_storm`)
-3. Create your feature branch (`git checkout -b my-new-feature`)
-4. Commit your changes (`git commit -am 'Added some feature'`)
-5. Push to the branch (`git push origin my-new-feature`)
-6. [Create new Pull Request](https://github.com/christiangda/puppet-apache_storm/pull/new/master)
-
-Of course, bug reports and suggestions for improvements are always
-welcome. GitHub pull requests are even better! :-)
+**Of course, bug reports and suggestions for improvements are always welcome.**
 
 You can also support my work on apache_storm via
 [Gratipay](https://gratipay.com/~645e3ac3c159/).
