@@ -26,8 +26,9 @@ describe 'apache_storm::install', :type => 'class' do
       let(:package_file_path) { "#{sources_path}/#{package_file}" }
       let(:package_uri)       { "#{repo_base}/#{package_release}/#{package_file}" }
 
-      let(:package_bin_path)           { "#{releases_home}/bin" }
-      let(:package_logs_path)          { "#{releases_home}/logs" }
+      let(:package_bin_path)  { "#{releases_home}/bin" }
+      let(:package_conf_path) { "#{releases_home}/conf" }
+      let(:package_logs_path) { "#{releases_home}/logs" }
 
       ##########################################################################
       # Contexts
@@ -58,40 +59,40 @@ describe 'apache_storm::install', :type => 'class' do
         it do
           is_expected.to contain_file("#{install_path}").with(
             'ensure' => 'directory',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
         it do
           is_expected.to contain_file("#{releases_path}").with(
             'ensure' => 'directory',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
         it do
           is_expected.to contain_file("#{sources_path}").with(
             'ensure' => 'directory',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
         it do
           is_expected.to contain_file("#{pid_path}").with(
             'ensure' => 'directory',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
         it do
           is_expected.to contain_file("#{storm_local_dir}").with(
             'ensure' => 'directory',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
@@ -120,8 +121,8 @@ describe 'apache_storm::install', :type => 'class' do
           is_expected.to contain_file("#{package_logs_path}").with(
             'ensure' => 'directory',
             'mode'   => '0644',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
@@ -129,20 +130,39 @@ describe 'apache_storm::install', :type => 'class' do
         it do
           is_expected.to contain_file("symlink__#{current_path}").with(
             'ensure' => 'link',
-            'path' => "#{current_path}",
+            'path'   => "#{current_path}",
             'target' => "#{releases_home}",
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           )
         end
 
+        it do
+          is_expected.to contain_file("symlink__#{config_path}").with(
+            'ensure' => 'link',
+            'path'   => "#{config_path}",
+            'target' => "#{package_conf_path}",
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
+          )
+        end
+
+        it do
+          is_expected.to contain_file("symlink__#{logs_path}").with(
+            'ensure' => 'link',
+            'path'   => "#{logs_path}",
+            'target' => "#{package_logs_path}",
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
+          )
+        end
         # Create profile.d file
         it do
           is_expected.to contain_file("/etc/profile.d/#{package_name}.sh").with(
             'ensure' => 'present',
             'mode'   => '0644',
-            'owner' => "#{user}",
-            'group' => "#{group}"
+            'owner'  => "#{user}",
+            'group'  => "#{group}"
           ).with_content(
             /export PATH\=\$PATH\:#{install_path}\/bin\n/
           )

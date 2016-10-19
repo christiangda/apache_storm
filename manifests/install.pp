@@ -60,6 +60,20 @@ class apache_storm::install inherits apache_storm {
     owner  => $apache_storm::user,
     group  => $apache_storm::group,
   } ~>
+  file { "symlink__${apache_storm::config_path}":
+    ensure => 'link',
+    path   => $apache_storm::config_path,
+    target => $apache_storm::package_conf_path,
+    owner  => $apache_storm::user,
+    group  => $apache_storm::group,
+  } ~>
+  file { "symlink__${apache_storm::logs_path}":
+    ensure => 'link',
+    path   => $apache_storm::logs_path,
+    target => $apache_storm::package_logs_path,
+    owner  => $apache_storm::user,
+    group  => $apache_storm::group,
+  } ~>
   file { "/etc/profile.d/${apache_storm::package_name}.sh":
     ensure  => $apache_storm::ensure,
     mode    => '0644',

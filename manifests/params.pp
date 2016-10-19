@@ -24,7 +24,9 @@ class apache_storm::params {
   $releases_home     = "${releases_path}/${package_release}"
 
   $package_bin_path  = "${releases_home}/bin"
+  $package_conf_path = "${releases_home}/conf"
   $package_logs_path = "${releases_home}/logs"
+
   $storm_command     = "${package_bin_path}/storm"
 
   ##############################################################################
