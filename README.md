@@ -26,40 +26,119 @@ This is a [Puppet](https://puppetlabs.com/) module to manage [Apache Storm](http
 With this module you can installs, configures, and manages the [Apache Storm](http://storm.apache.org/) services.
 
 This module were designed to work with:
+* Debian OS Family and Redhat OS Family
 * [Puppet](https://puppetlabs.com/) version >= 3.8.0
 * [Apache Storm](http://storm.apache.org/) version >= 1.0.0
 
+### Howto Install
+
+Execute the following command in your puppet server:
+```bash
+puppet module install christiangda/apache_storm
+```
+
 **Note**
 
-* [apache_storm](https://github.com/christiangda/puppet-apache_storm) needs that you provison [Java](https://www.java.com) by your own way.
-
+You need to take this consideration before start with the module
+* [apache_storm](https://github.com/christiangda/puppet-apache_storm) module needs that you provison [Java](https://www.java.com) by your own way.
+* Verified that you don't not have installed [Apache Storm](http://storm.apache.org/) from your OS Package Manager.
 
 ## Module Description
 
 [apache_storm](https://github.com/christiangda/puppet-apache_storm) is a module designed to provision
-[Apache Storm](http://storm.apache.org/) from its binary package downloaded from a mirror.
+[Apache Storm](http://storm.apache.org/) from its binary package [downloaded from a mirror link](http://www.apache.org/dyn/closer.lua/storm/apache-storm-1.0.2/apache-storm-1.0.2.tar.gz). This module was designed to be independent from your system packages, so you need to be sure that you don't have installed [Apache Storm](http://storm.apache.org/) from your OS package manager.
+
+By default this module will install [Apache Storm](http://storm.apache.org/) in the `/opt/apache-storm` folder and create two symbolic links:  `/etc/apache-storm` and `/var/log/apache-storm`.  Is very recommended you add a extra volume and mount it in `/opt`
+
+This module permit you to disable the service management, in case you want to use external tool, like [supervisord](http://supervisord.org/)
 
 ## Setup
 
-### What apache_storm affects
+### What [apache_storm](https://github.com/christiangda/puppet-apache_storm)  affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+Folders Created:
+```bash
+/opt/apache-storm/
+├── current -> /opt/apache-storm/releases/apache-storm-1.0.2
+├── releases
+│   ├── apache-storm-1.0.1
+│   │   ├── bin
+│   │   ├── conf
+│   │   ├── examples
+│   │   ├── external
+│   │   ├── extlib
+│   │   ├── extlib-daemon
+│   │   ├── lib
+│   │   ├── log4j2
+│   │   ├── logs
+│   │   └── public
+│   └── apache-storm-1.0.2
+│       ├── bin
+│       ├── conf
+│       ├── examples
+│       ├── external
+│       ├── extlib
+│       ├── extlib-daemon
+│       ├── lib
+│       ├── log4j2
+│       ├── logs
+│       └── public
+├── sources
+│   ├── apache-storm-1.0.1.tar.gz
+│   └── apache-storm-1.0.2.tar.gz
+└── storm_local_dir
+```
 
-### Setup Requirements **OPTIONAL**
+Symbolic links Created:
+```bash
+/etc/
+├── apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/conf
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+/var/log/
+├── apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/logs
 
-### Beginning with apache_storm
+```
 
-The very basic steps needed for a user to get the module up and running.
+Files for Services Created:
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+Debian Family
+```bash
+/etc/init
+├── apache-storm-[nimbus|supervisor|ui|logviewer|drpc].conf
+
+```
+
+Redhat Family
+```bash
+/etc/systemd/system
+├── apache-storm-[nimbus|supervisor|ui|logviewer|drpc].service
+
+```
+
+### Setup Requirements
+
+This module requires that you provision [Java](https://www.java.com).  You can use a [Puppet's](https://puppetlabs.com/) module from [puppetforge](https://forge.puppet.com/) to do that, or your OS Package manager.
+
+For [Java's](https://www.java.com) version and provider see the recommendation in [Apache Storm web page](http://storm.apache.org/)
+
+### Beginning with [apache_storm](https://github.com/christiangda/puppet-apache_storm)
+
+
+### Install
+
+Use these steps if you already have a version of the firewall module installed.
+
+```bash
+puppet module install christiangda/apache_storm
+```
+
+### Upgrade
+
+Use these steps if you already have a version of the firewall module installed.
+
+```bash
+puppet module upgrade christiangda/apache_storm
+```
 
 ## Usage
 
@@ -74,15 +153,10 @@ include ::apache_storm
 ::apache_storm::service { 'supervisor': }
 ::apache_storm::service { 'logviewer': }
 ::apache_storm::service { 'drpc': }
-
 ```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
 
 ## Limitations
 
