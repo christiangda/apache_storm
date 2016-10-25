@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe 'apache_storm', :type => 'class' do
+describe 'apache_storm', type: 'class' do
 
   ['Debian', 'Ubuntu'].each do |distro|
 
     context "on #{distro} OS" do
 
       let(:facts) { {
-        :operatingsystem => distro,
-        :kernel          => 'Linux',
-        :osfamily        => 'Debian',
-        :lsbdistid       => 'Debian'
+        operatingsystem: distro,
+        kernel:          'Linux',
+        osfamily:        'Debian',
+        lsbdistid:       'Debian'
       } }
 
       context 'Init class tests' do

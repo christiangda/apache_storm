@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe 'apache_storm', :type => 'class' do
+describe 'apache_storm', type: 'class' do
 
   ['RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux'].each do |distro|
 
     context "on #{distro} OS" do
 
       let(:facts) { {
-        :operatingsystem => distro,
-        :kernel          => 'Linux',
-        :osfamily        => 'RedHat'
+        operatingsystem: distro,
+        kernel:          'Linux',
+        osfamily:        'RedHat'
       } }
 
 

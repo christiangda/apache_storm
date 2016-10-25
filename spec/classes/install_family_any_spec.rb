@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'apache_storm::install', :type => 'class' do
+describe 'apache_storm::install', type: 'class' do
   ['RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux', 'Debian', 'Ubuntu'].each do |distro|
     context "on #{distro} OS" do
       ##########################################################################

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'apache_storm::service', 'type' => 'define' do
+describe 'apache_storm::service', type: 'define' do
   ['RedHat', 'CentOS', 'Fedora', 'Scientific', 'Amazon', 'OracleLinux'].each do |distro|
     context "on #{distro} OS" do
       let :facts do

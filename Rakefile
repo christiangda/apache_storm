@@ -49,7 +49,7 @@ end
 
 # RuboCop::RakeTask.new
 
-task :test => [
+task test: [
   :metadata_lint,
   :syntax,
   :lint,

@@ -174,6 +174,7 @@ node 'storm-nimbus.mynetwork.local' {
     version   => '1.0.2',
     repo_base => 'http://apache.claz.org/storm',
     config    => {
+      'supervisor.slots.ports'      => [6700, 6701, 6702, 6703, 6704],
       'storm.zookeeper.servers'     => ['zk-01.mynetwork.local', 'zk-02.mynetwork.local', 'zk-03.mynetwork.local'],
       'client.jartransformer.class' => 'org.apache.storm.hack.StormShadeTransformer',
     }
@@ -197,6 +198,7 @@ node 'storm-supervisor.mynetwork.local' {
     version   => '1.0.2',
     repo_base => 'http://apache.claz.org/storm',
     config    => {
+      'supervisor.slots.ports'      => [6700, 6701, 6702, 6703, 6704],
       'storm.zookeeper.servers'     => ['zk-01.mynetwork.local', 'zk-02.mynetwork.local', 'zk-03.mynetwork.local'],
       'client.jartransformer.class' => 'org.apache.storm.hack.StormShadeTransformer',
     }
@@ -221,11 +223,12 @@ node 'storm-supervisor.mynetwork.local' {
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module were designed to work with:
+* Debian OS Family and Redhat OS Family
+* [Puppet](https://puppetlabs.com/) version >= 3.8.0
+* [Apache Storm](http://storm.apache.org/) version >= 1.0.0
 
 ## Development / Contributing
-
-### For the impatient
 
 1. [Fork it](https://github.com/christiangda/puppet-apache_storm#fork-destination-box) / [Clone it](https://github.com/christiangda/puppet-apache_storm.git) (`git clone https://github.com/christiangda/puppet-apache_storm.git; cd puppet-apache_storm`)
 2. Create your feature branch (`git checkout -b my-new-feature`)
