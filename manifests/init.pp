@@ -27,7 +27,7 @@ class apache_storm (
   validate_hash($config)
 
   # merge configs
-  $config_options = deep_merge($apache_storm::params::default_common_config, $config)
+  $config_options = merge($apache_storm::params::default_common_config, $config)
   validate_hash($config_options)
 
   include ::apache_storm::install
