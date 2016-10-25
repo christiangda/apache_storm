@@ -164,7 +164,7 @@ describe 'apache_storm::install', :type => 'class' do
             'owner'  => "#{user}",
             'group'  => "#{group}"
           ).with_content(
-            /export PATH\=\$PATH\:#{install_path}\/bin\n/
+            /export PATH\=\$PATH\:#{current_path}\/bin\n/
           )
         end
       end # en contex init class
