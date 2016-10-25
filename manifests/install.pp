@@ -77,7 +77,7 @@ class apache_storm::install inherits apache_storm {
   file { "/etc/profile.d/${apache_storm::package_name}.sh":
     ensure  => $apache_storm::ensure,
     mode    => '0644',
-    content => "export PATH=\$PATH:${apache_storm::install_path}/bin\n",
+    content => "export PATH=\$PATH:${apache_storm::current_path}/bin\n",
     owner   => $apache_storm::user,
     group   => $apache_storm::group,
   }

@@ -56,7 +56,7 @@ This module permit you to disable the service management, in case you want to us
 
 ### What [apache_storm](https://github.com/christiangda/puppet-apache_storm)  affects
 
-Folders Created:
+#### Folders Created:
 ```bash
 /opt/apache-storm/
 ├── current -> /opt/apache-storm/releases/apache-storm-1.0.2
@@ -89,30 +89,32 @@ Folders Created:
 └── storm_local_dir
 ```
 
-Symbolic links Created:
+#### Symbolic links
 ```bash
 /etc/
 ├── apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/conf
 
 /var/log/
 ├── apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/logs
-
 ```
 
-Files for Services Created:
+#### Services' files
 
-Debian Family
+**Debian Family**
 ```bash
 /etc/init
 ├── apache-storm-[nimbus|supervisor|ui|logviewer|drpc].conf
-
 ```
 
-Redhat Family
+**Redhat Family**
 ```bash
 /etc/systemd/system
 ├── apache-storm-[nimbus|supervisor|ui|logviewer|drpc].service
+```
 
+#### export PATH file
+```bash
+/etc/profile.d/apache-storm.sh
 ```
 
 ### Setup Requirements
