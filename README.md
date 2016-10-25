@@ -30,12 +30,15 @@ This module were designed to work with:
 * [Puppet](https://puppetlabs.com/) version >= 3.8.0
 * [Apache Storm](http://storm.apache.org/) version >= 1.0.0
 
-### Howto Install
+### How to Install
 
 Execute the following command in your puppet server:
 ```bash
 puppet module install christiangda/apache_storm
 ```
+### How to Use
+
+See [Usage](#usage)
 
 **Note**
 
@@ -91,25 +94,20 @@ This module permit you to disable the service management, in case you want to us
 
 #### Symbolic links
 ```bash
-/etc/
-├── apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/conf
-
-/var/log/
-├── apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/logs
+/etc/apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/conf
+/var/log/apache-storm -> /opt/apache-storm/releases/apache-storm-1.0.2/logs
 ```
 
 #### Services' files
 
 **Debian Family**
 ```bash
-/etc/init
-├── apache-storm-[nimbus|supervisor|ui|logviewer|drpc].conf
+/etc/init/apache-storm-[nimbus|supervisor|ui|logviewer|drpc].conf
 ```
 
 **Redhat Family**
 ```bash
-/etc/systemd/system
-├── apache-storm-[nimbus|supervisor|ui|logviewer|drpc].service
+/etc/systemd/system/apache-storm-[nimbus|supervisor|ui|logviewer|drpc].service
 ```
 
 #### export PATH file
@@ -144,21 +142,82 @@ puppet module upgrade christiangda/apache_storm
 
 ## Usage
 
-The default
+### Very basic usage
+
+in your manifest file
 ```puppet
-include java
+node 'storm.mynetwork.local' {
+  # if you are using puppet's java module
+  include java
 
-include ::apache_storm
+  # Using this apache_storm module
+  include ::apache_storm
+  ::apache_storm::service { 'nimbus': }
+  ::apache_storm::service { 'ui': }
+  ::apache_storm::service { 'supervisor': }
+  ::apache_storm::service { 'logviewer': }
+  ::apache_storm::service { 'drpc': }
+}
+```
 
-::apache_storm::service { 'nimbus': }
-::apache_storm::service { 'ui': }
-::apache_storm::service { 'supervisor': }
-::apache_storm::service { 'logviewer': }
-::apache_storm::service { 'drpc': }
+### Using parameters
+
+in your manifest file
+```puppet
+node 'storm-nimbus.mynetwork.local' {
+  # if you are using puppet's java module
+  include java
+
+  # Using this apache_storm module
+  class { 'apache_storm':
+    ensure    => 'present',
+    version   => '1.0.2',
+    repo_base => 'http://apache.claz.org/storm',
+    config    => {
+      'storm.zookeeper.servers'     => ['zk-01.mynetwork.local', 'zk-02.mynetwork.local', 'zk-03.mynetwork.local'],
+      'client.jartransformer.class' => 'org.apache.storm.hack.StormShadeTransformer',
+    }
+  }
+
+  ::apache_storm::service { 'nimbus':
+    manage_service => true,
+    service_ensure => 'present',
+  }
+  ::apache_storm::service { 'ui': }
+
+}
+
+node 'storm-supervisor.mynetwork.local' {
+  # if you are using puppet's java module
+  include java
+
+  # Using this apache_storm module
+  class { 'apache_storm':
+    ensure    => 'present',
+    version   => '1.0.2',
+    repo_base => 'http://apache.claz.org/storm',
+    config    => {
+      'storm.zookeeper.servers'     => ['zk-01.mynetwork.local', 'zk-02.mynetwork.local', 'zk-03.mynetwork.local'],
+      'client.jartransformer.class' => 'org.apache.storm.hack.StormShadeTransformer',
+    }
+  }
+
+  ::apache_storm::service { 'supervisor':
+    manage_service => true,
+    service_ensure => 'present',
+  }
+  ::apache_storm::service { 'logviewer': }
+  ::apache_storm::service { 'drpc': }
+}
 ```
 
 ## Reference
 
+* [Puppet](https://puppetlabs.com/)
+* [Apache Storm](http://storm.apache.org/)
+* [Rubocop](https://github.com/bbatsov/rubocop)
+* [rspec-puppet](http://rspec-puppet.com/)
+* [puppet-blacksmith](https://github.com/voxpupuli/puppet-blacksmith)
 
 ## Limitations
 
@@ -182,22 +241,7 @@ This code has Unit Tests, and was builded using:
 * [Rubocop](https://github.com/bbatsov/rubocop)
 * [rspec-puppet](http://rspec-puppet.com/)
 * [puppet-blacksmith](https://github.com/voxpupuli/puppet-blacksmith)
-* and others
-
-### Install rubygems first
-```bash
-gem install bundler
-```            
-
-### Install all required gems in .vendor/
-```bash
-bundle install --path .vendor
-```            
-
-### We can already use rake -T to see options
-```bash
-bundle exec rubocop && bundle exec rake test
-```
+* and others ([see Gemfile](Gemfile))
 
 **Of course, bug reports and suggestions for improvements are always welcome.**
 
