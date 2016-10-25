@@ -1,6 +1,6 @@
 {
   "name": "christiangda-apache_storm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Christian Gonzalez <christiangda@gmail.com>",
   "summary": "Apache Storm provisioner Module",
   "license": "Apache-2.0",
