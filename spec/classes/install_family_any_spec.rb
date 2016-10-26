@@ -32,7 +32,7 @@ describe 'apache_storm::install', type: 'class' do
 
       ##########################################################################
       # Contexts
-      context 'Install class tests' do
+      context 'Install class tests with the default parameters' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to create_class('apache_storm::install') }
         it { is_expected.to contain_class('apache_storm') }

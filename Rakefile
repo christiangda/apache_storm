@@ -57,4 +57,4 @@ task test: [
   :spec
 ]
 
-# task :default => :test
+# task default: test:

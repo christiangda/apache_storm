@@ -34,7 +34,7 @@ This module were designed to work with:
 
 Execute the following command in your puppet server:
 ```bash
-puppet module install christiangda/apache_storm
+puppet module install christiangda-apache_storm
 ```
 ### How to Use
 
@@ -117,7 +117,7 @@ This module permit you to disable the service management, in case you want to us
 
 ### Setup Requirements
 
-This module requires that you provision [Java](https://www.java.com).  You can use a [Puppet's](https://puppetlabs.com/) module from [puppetforge](https://forge.puppet.com/) to do that, or your OS Package manager.
+This module requires that you provision [Java](https://www.java.com).  You can use a [Puppet](https://puppetlabs.com/) module from [puppetforge](https://forge.puppet.com/) to do that, or your OS Package manager.
 
 For [Java's](https://www.java.com) version and provider see the recommendation in [Apache Storm web page](http://storm.apache.org/)
 
@@ -129,7 +129,7 @@ For [Java's](https://www.java.com) version and provider see the recommendation i
 Use these steps if you already have a version of the firewall module installed.
 
 ```bash
-puppet module install christiangda/apache_storm
+puppet module install christiangda-apache_storm
 ```
 
 ### Upgrade
@@ -137,7 +137,7 @@ puppet module install christiangda/apache_storm
 Use these steps if you already have a version of the firewall module installed.
 
 ```bash
-puppet module upgrade christiangda/apache_storm
+puppet module upgrade christiangda-apache_storm
 ```
 
 ## Usage
@@ -220,6 +220,7 @@ node 'storm-supervisor.mynetwork.local' {
 * [Rubocop](https://github.com/bbatsov/rubocop)
 * [rspec-puppet](http://rspec-puppet.com/)
 * [puppet-blacksmith](https://github.com/voxpupuli/puppet-blacksmith)
+* [RSpec For Ops Part 2: Diving in with rspec-puppet](http://blog.danzil.io/page2/)
 
 ## Limitations
 

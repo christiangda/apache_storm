@@ -13,7 +13,7 @@ describe 'apache_storm', type: 'class' do
       } }
 
 
-      context 'Init class tests' do
+      context 'Init class tests with the default parameters' do
 
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to create_class('apache_storm') }
