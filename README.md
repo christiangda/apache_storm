@@ -19,6 +19,8 @@
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
+7. [Authors - Who is contributing to do it](#authors)
+8. [License](#license)
 
 ## Overview
 
@@ -253,3 +255,13 @@ You can also support my work on apache_storm via
 [Gratipay](https://gratipay.com/~645e3ac3c159/).
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png)](https://gratipay.com/~645e3ac3c159/)
+
+## Authors
+
+* [Christian González](https://github.com/christiangda)
+
+## License
+
+This module is released under the Apache License Version 2.0:
+
+* [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
