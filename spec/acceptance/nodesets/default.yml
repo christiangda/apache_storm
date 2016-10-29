@@ -1,0 +1,30 @@
+---
+HOSTS:
+  fedora24-64-1:
+    hypervisor: docker
+    platform: fedora-24-x86_64
+    image: fedora:24
+    docker_preserve_image: true
+    docker_cmd: '["/usr/sbin/init"]'
+    docker_image_commands:
+      - 'dnf install -y crontabs tar wget openssl sysvinit-tools iproute which initscripts'
+    roles:
+    - agent
+CONFIG:
+  type: foss
+  log_level: verbose
+  trace_limit: 200
+
+# 
+# HOSTS:
+#   centos-7-x64:
+#     platform: el-7-x86_64
+#     hypervisor: docker
+#     image: centos:7
+#     docker_preserve_image: true
+#     docker_cmd: '["/usr/sbin/init"]'
+#     # install various tools required to get the image up to usable levels
+#     docker_image_commands:
+#       - 'yum install -y crontabs tar wget openssl sysvinit-tools iproute which initscripts'
+# CONFIG:
+#   trace_limit: 200

@@ -34,6 +34,8 @@ describe 'apache_storm::service', type: 'define' do
           let(:provider) {'systemd'}
           let(:service_daemon_ensure) {'running'}
 
+          it { is_expected.to compile.with_all_deps }
+
           # create systemd file
           it do
             is_expected.to contain_file("#{service_file}").with(

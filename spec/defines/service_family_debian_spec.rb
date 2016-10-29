@@ -34,6 +34,8 @@ describe 'apache_storm::service', type: 'define' do
           let(:provider) { 'upstart' }
           let(:service_daemon_ensure) { 'running' }
 
+          it { is_expected.to compile.with_all_deps }
+
           # create systemd file
           it do
             is_expected.to contain_file("#{service_file}").with(
@@ -44,13 +46,12 @@ describe 'apache_storm::service', type: 'define' do
 
           # Service
           it do
-            is_expected.to contain_service("#{package_name}-#{service_name}")
-              .with(
-                'ensure'     => "#{service_daemon_ensure}",
-                'hasstatus'  => true,
-                'hasrestart' => true,
-                'provider'   => "#{provider}"
-              )
+            is_expected.to contain_service("#{package_name}-#{service_name}").with(
+              'ensure'     => "#{service_daemon_ensure}",
+              'hasstatus'  => true,
+              'hasrestart' => true,
+              'provider'   => "#{provider}"
+            )
           end
         end # en contex init class
       end # each daemon name

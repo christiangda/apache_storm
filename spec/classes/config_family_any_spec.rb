@@ -11,7 +11,7 @@ describe 'apache_storm::config', type: 'class' do
       let(:config_path)  { "/etc/#{package_name}" }
       ##########################################################################
       # Contexts
-      context 'Config class tests with the default parameters' do
+      context 'tests with the default parameters' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to create_class('apache_storm::config') }
         it { is_expected.to contain_class('apache_storm') }

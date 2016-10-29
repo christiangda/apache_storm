@@ -23,16 +23,24 @@ group :test do
   gem 'rspec-puppet-facts'
   gem 'rspec-puppet-utils'
   gem 'metadata-json-lint'
-  gem 'puppet-blacksmith'
-  gem 'google-api-client'        , '<= 0.9.4', require: false if RUBY_VERSION < '2.0.0'
-  gem 'json_pure'                , '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
-  gem 'codeclimate-test-reporter', require: false
-  gem 'simplecov'                , require: false
+  gem 'rubocop'                               , require: false if RUBY_VERSION >= '2.0.0'
+  gem 'rubocop'                   , '0.41.2'  , require: false if RUBY_VERSION < '2.0.0'
+  gem 'rubocop-rspec'             , '~> 1.6'  , require: false if RUBY_VERSION >= '2.3.0'
+  gem 'google-api-client'         , '<= 0.9.4', require: false if RUBY_VERSION < '2.0.0'
+  gem 'json_pure'                 , '<= 2.0.1', require: false if RUBY_VERSION < '2.0.0'
+  gem 'codeclimate-test-reporter'             , require: false
+  gem 'simplecov'                             , require: false
 end
 
 group :development do
-  gem 'rubocop'
-  gem 'beaker'
-  gem 'beaker-rspec'
+  gem 'travis'
+  gem 'travis-lint'
+  gem 'puppet-blacksmith'
+end
+
+group :acceptance do
+  gem 'beaker'      , '<= 3.0.0', require: false if RUBY_VERSION < '2.0.0'
+  gem 'beaker-rspec', '<= 5.6.0', require: false if RUBY_VERSION < '2.0.0'
+  gem 'serverspec'
   gem 'beaker-puppet_install_helper'
 end

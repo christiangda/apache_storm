@@ -252,9 +252,11 @@ This code has Unit Tests, and was builded using:
 **Of course, bug reports and suggestions for improvements are always welcome.**
 
 You can also support my work on apache_storm via
-[Gratipay](https://gratipay.com/~645e3ac3c159/).
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/christiangda)
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png)](https://gratipay.com/~645e3ac3c159/)
+
 
 ## Authors
 
