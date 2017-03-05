@@ -3,7 +3,7 @@
 class apache_storm::params {
 
   $ensure    = 'present'
-  $version   = '1.0.2'
+  $version   = '1.0.3'
   $user      = 'storm'
   $group     = 'storm'
   $repo_base = 'http://apache.claz.org/storm'
@@ -16,18 +16,6 @@ class apache_storm::params {
   $releases_path = "${install_path}/releases"
   $sources_path  = "${install_path}/sources"
   $current_path  = "${install_path}/current"
-
-  $package_release   = "${package_name}-${version}"
-  $package_file      = "${package_release}.tar.gz"
-  $package_uri       = "${repo_base}/${package_release}/${package_file}"
-  $package_file_path = "${sources_path}/${package_file}"
-  $releases_home     = "${releases_path}/${package_release}"
-
-  $package_bin_path  = "${releases_home}/bin"
-  $package_conf_path = "${releases_home}/conf"
-  $package_logs_path = "${releases_home}/logs"
-
-  $storm_command     = "${package_bin_path}/storm"
 
   ##############################################################################
   # Config Hashes

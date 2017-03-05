@@ -24,6 +24,18 @@ class apache_storm (
     fail('This module work only with Apache Storm version >= 1.0.0')
   }
 
+  $package_release   = "${apache_storm::params::package_name}-${version}"
+  $package_file      = "${package_release}.tar.gz"
+  $package_uri       = "${repo_base}/${package_release}/${package_file}"
+  $package_file_path = "${apache_storm::params::sources_path}/${package_file}"
+  $releases_home     = "${apache_storm::params::releases_path}/${package_release}"
+
+  $package_bin_path  = "${releases_home}/bin"
+  $package_conf_path = "${releases_home}/conf"
+  $package_logs_path = "${releases_home}/logs"
+
+  $storm_command = "${package_bin_path}/storm"
+
   validate_hash($config)
 
   # merge configs

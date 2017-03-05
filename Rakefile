@@ -18,6 +18,12 @@ rescue LoadError
   puts 'ignoring group :development'
 end
 
+begin
+  require 'beaker/tasks/quick_start'
+rescue LoadError
+  puts 'ignoring group :acceptance'
+end
+
 exclude_paths = [
   'pkg/**/*',
   'vendor/**/*',
@@ -27,7 +33,7 @@ exclude_paths = [
 
 log_format = '%{path}:%{linenumber}:%{check}:%{KIND}:%{message}'
 
-PuppetLint::RakeTask.new :lint do |config|
+PuppetLint::RakeTask.new(:lint) do |config|
   config.disable_checks = ['disable_80chars']
   config.fail_on_warnings = true
   config.with_context = true

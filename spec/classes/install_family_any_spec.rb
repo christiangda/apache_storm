@@ -8,7 +8,7 @@ describe 'apache_storm::install', type: 'class' do
       let('user')  { 'storm' }
       let('group') { 'storm' }
 
-      let(:version)         { '1.0.2' }
+      let(:version)         { '1.0.3' }
       let(:repo_base)       { 'http://apache.claz.org/storm' }
       let(:package_name)    { 'apache-storm' }
       let(:install_path)    { "/opt/#{package_name}" }
