@@ -233,15 +233,18 @@ This module were designed to work with:
 
 ## Development / Contributing
 
-1. [Fork it](https://github.com/christiangda/puppet-apache_storm#fork-destination-box) / [Clone it](https://github.com/christiangda/puppet-apache_storm.git) (`git clone https://github.com/christiangda/puppet-apache_storm.git; cd puppet-apache_storm`)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Install bundler app first (`gem install bundler`)
-4. Install rubygems dependecies in .vendor folder (`bundle install --path .vendor`)
-5. Make your changes / improvements / fixes / etc, and of course **your Unit Test** for new code
-6. Run the tests (`bundle exec rubocop && bundle exec rake test`)
-6. Commit your changes (`git add . && git commit -m 'Added some feature'`)
-5. Push to the branch (`git push origin my-new-feature`)
-6. [Create new Pull Request](https://github.com/christiangda/puppet-apache_storm/pull/new/master)
+* [Fork it](https://github.com/christiangda/puppet-apache_storm#fork-destination-box) / [Clone it](https://github.com/christiangda/puppet-apache_storm.git) (`git clone https://github.com/christiangda/puppet-apache_storm.git; cd puppet-apache_storm`)
+* Create your feature branch (`git checkout -b my-new-feature`)
+* Install [rvm]()
+* Install ruby `rvm install 2.3`
+* Install ruby `rvm usage ruby-2.3.3` in my case
+* Install bundler app first (`gem install bundler`)
+* Install rubygems dependecies in .vendor folder (`bundle install --path .vendor`)
+* Make your changes / improvements / fixes / etc, and of course **your Unit Test** for new code
+* Run the tests (`bundle exec rubocop && bundle exec rake test`)
+* Commit your changes (`git add . && git commit -m 'Added some feature'`)
+* Push to the branch (`git push origin my-new-feature`)
+* [Create new Pull Request](https://github.com/christiangda/puppet-apache_storm/pull/new/master)
 
 This code has Unit Tests, and was builded using:
 * [Rubocop](https://github.com/bbatsov/rubocop)
